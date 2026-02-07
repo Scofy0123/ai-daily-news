@@ -124,6 +124,12 @@ Usage notes:
 <location>project</location>
 </skill>
 
+<skill>
+<name>mcp-cli</name>
+<description>Use the Model Context Protocol (MCP) CLI tool to create, manage, and inspect MCP servers. This skill enables building MCP servers, inspecting resources/tools, running commands, and managing configurations. Useful for developers working with MCP services or needing command-line access to MCP functionality.</description>
+<location>project</location>
+</skill>
+
 </available_skills>
 <!-- SKILLS_TABLE_END -->
 
