@@ -130,6 +130,12 @@ Usage notes:
 <location>project</location>
 </skill>
 
+<skill>
+<name>prd</name>
+<description>Generate high-quality Product Requirements Documents (PRDs) for software systems and AI-powered features. Includes executive summaries, user stories, technical specifications, and risk analysis.</description>
+<location>project</location>
+</skill>
+
 </available_skills>
 <!-- SKILLS_TABLE_END -->
 
