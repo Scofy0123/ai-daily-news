@@ -1,0 +1,6 @@
+{
+  "name": "ai-news-daily",
+  "version": "1.0.0",
+  "description": "每日AI新闻聚合器 - 自动抓取美国/中国AI公司动态、GitHub热门项目、AI YouTuber视频总结",
+  "author": "AI Assistant"
+}
