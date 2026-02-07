@@ -1,143 +1,143 @@
 ---
 name: prd
-description: 'Generate high-quality Product Requirements Documents (PRDs) for software systems and AI-powered features. Includes executive summaries, user stories, technical specifications, and risk analysis.'
+description: '生成高质量的软件系统和 AI 功能产品需求文档 (PRD)。包含执行摘要、用户故事、技术规范和风险分析。'
 license: MIT
 ---
 
-# Product Requirements Document (PRD)
+# 产品需求文档 (PRD)
 
-## Overview
+## 概述
 
-Design comprehensive, production-grade Product Requirements Documents (PRDs) that bridge the gap between business vision and technical execution. This skill works for modern software systems, ensuring that requirements are clearly defined.
+设计全面、生产级的产品需求文档 (PRD)，连接业务愿景与技术执行。本技能适用于现代软件系统，确保需求被清晰定义。
 
-## When to Use
+## 适用场景
 
-Use this skill when:
+在以下情况使用此技能：
 
-- Starting a new product or feature development cycle
-- Translating a vague idea into a concrete technical specification
-- Defining requirements for AI-powered features
-- Stakeholders need a unified "source of truth" for project scope
-- User asks to "write a PRD", "document requirements", or "plan a feature"
-
----
-
-## Operational Workflow
-
-### Phase 1: Discovery (The Interview)
-
-Before writing a single line of the PRD, you **MUST** interrogate the user to fill knowledge gaps. Do not assume context.
-
-**Ask about:**
-
-- **The Core Problem**: Why are we building this now?
-- **Success Metrics**: How do we know it worked?
-- **Constraints**: Budget, tech stack, or deadline?
-
-### Phase 2: Analysis & Scoping
-
-Synthesize the user's input. Identify dependencies and hidden complexities.
-
-- Map out the **User Flow**.
-- Define **Non-Goals** to protect the timeline.
-
-### Phase 3: Technical Drafting
-
-Generate the document using the **Strict PRD Schema** below.
+- 启动新的产品或功能开发周期
+- 将模糊的想法转化为具体的技术规范
+- 定义 AI 驱动功能的需求
+- 利益相关者需要一个统一的项目范围"单一事实来源"
+- 用户要求"写一个 PRD"、"记录需求"或"规划一个功能"
 
 ---
 
-## PRD Quality Standards
+## 操作流程
 
-### Requirements Quality
+### 第一阶段：发现（访谈）
 
-Use concrete, measurable criteria. Avoid "fast", "easy", or "intuitive".
+在写下 PRD 的任何一行字之前，你**必须**询问用户以填补知识空白。不要假设上下文。
+
+**询问内容：**
+
+- **核心问题**：为什么我们要现在构建这个？
+- **成功指标**：我们如何知道它成功了？
+- **约束条件**：预算、技术栈或截止日期？
+
+### 第二阶段：分析与范围界定
+
+综合用户的输入。识别依赖关系和隐藏的复杂性。
+
+- 梳理**用户流程**。
+- 定义**非目标**以保护时间表。
+
+### 第三阶段：技术起草
+
+使用下方的**严格 PRD 结构**生成文档。
+
+---
+
+## PRD 质量标准
+
+### 需求质量
+
+使用具体、可衡量的标准。避免使用"快"、"容易"或"直观"等词汇。
 
 ```diff
-# Vague (BAD)
-- The search should be fast and return relevant results.
-- The UI must look modern and be easy to use.
+# 模糊 (差)
+- 搜索应该很快并返回相关结果。
+- UI 必须看起来现代且易于使用。
 
-# Concrete (GOOD)
-+ The search must return results within 200ms for a 10k record dataset.
-+ The search algorithm must achieve >= 85% Precision@10 in benchmark evals.
-+ The UI must follow the 'Vercel/Next.js' design system and achieve 100% Lighthouse Accessibility score.
+# 具体 (好)
++ 搜索必须在 10k 记录数据集上 200ms 内返回结果。
++ 搜索算法必须在基准评估中达到 >= 85% Precision@10。
++ UI 必须遵循 'Vercel/Next.js' 设计系统并达到 100% Lighthouse 无障碍评分。
 ```
 
 ---
 
-## Strict PRD Schema
+## 严格 PRD 结构
 
-You **MUST** follow this exact structure for the output:
+你**必须**严格遵循以下输出结构：
 
-### 1. Executive Summary
+### 1. 执行摘要
 
-- **Problem Statement**: 1-2 sentences on the pain point.
-- **Proposed Solution**: 1-2 sentences on the fix.
-- **Success Criteria**: 3-5 measurable KPIs.
+- **问题陈述**：1-2 句话描述痛点。
+- **拟议方案**：1-2 句话描述修复方案。
+- **成功标准**：3-5 个可衡量的 KPI。
 
-### 2. User Experience & Functionality
+### 2. 用户体验与功能
 
-- **User Personas**: Who is this for?
-- **User Stories**: `As a [user], I want to [action] so that [benefit].`
-- **Acceptance Criteria**: Bulleted list of "Done" definitions for each story.
-- **Non-Goals**: What are we NOT building?
+- **用户画像**：这是为谁设计的？
+- **用户故事**：`作为 [用户], 我想要 [行动] 以便 [利益].`
+- **验收标准 (AC)**：每个故事的"完成"定义的要点列表。
+- **非目标**：我们不构建什么？
 
-### 3. AI System Requirements (If Applicable)
+### 3. AI 系统需求 (如适用)
 
-- **Tool Requirements**: What tools and APIs are needed?
-- **Evaluation Strategy**: How to measure output quality and accuracy.
+- **工具需求**：需要什么工具和 API？
+- **评估策略**：如何衡量输出质量和准确性。
 
-### 4. Technical Specifications
+### 4. 技术规范
 
-- **Architecture Overview**: Data flow and component interaction.
-- **Integration Points**: APIs, DBs, and Auth.
-- **Security & Privacy**: Data handling and compliance.
+- **架构概述**：数据流和组件交互。
+- **集成点**：API、数据库和认证。
+- **安全与隐私**：数据处理和合规性。
 
-### 5. Risks & Roadmap
+### 5. 风险与路线图
 
-- **Phased Rollout**: MVP -> v1.1 -> v2.0.
-- **Technical Risks**: Latency, cost, or dependency failures.
-
----
-
-## Implementation Guidelines
-
-### DO (Always)
-
-- **Define Testing**: For AI systems, specify how to test and validate output quality.
-- **Iterate**: Present a draft and ask for feedback on specific sections.
-
-### DON'T (Avoid)
-
-- **Skip Discovery**: Never write a PRD without asking at least 2 clarifying questions first.
-- **Hallucinate Constraints**: If the user didn't specify a tech stack, ask or label it as `TBD`.
+- **分阶段发布**：MVP -> v1.1 -> v2.0。
+- **技术风险**：延迟、成本或依赖项故障。
 
 ---
 
-## Example: Intelligent Search System
+## 实施指南
 
-### 1. Executive Summary
+### 要做 (Always)
 
-**Problem**: Users struggle to find specific documentation snippets in massive repositories.
-**Solution**: An intelligent search system that provides direct answers with source citations.
-**Success**:
+- **定义测试**：对于 AI 系统，说明如何测试和验证输出质量。
+- **迭代**：展示草稿并针对特定部分征求反馈。
 
-- Reduce search time by 50%.
-- Citation accuracy >= 95%.
+### 不要 (Avoid)
 
-### 2. User Stories
+- **跳过发现阶段**：在未问至少 2 个澄清问题之前，决不要编写 PRD。
+- **臆造约束**：如果用户未指定技术栈，请询问或标记为 `待定 (TBD)`。
 
-- **Story**: As a developer, I want to ask natural language questions so I don't have to guess keywords.
-- **AC**:
-  - Supports multi-turn clarification.
-  - Returns code blocks with "Copy" button.
+---
 
-### 3. AI System Architecture
+## 示例：智能搜索系统
 
-- **Tools Required**: `codesearch`, `grep`, `webfetch`.
+### 1. 执行摘要
 
-### 4. Evaluation
+**问题**：用户很难在海量仓库中找到特定的文档片段。
+**方案**：一个能够提供直接答案并附带来源引用的智能搜索系统。
+**成功**：
 
-- **Benchmark**: Test with 50 common developer questions.
-- **Pass Rate**: 90% must match expected citations.
+- 搜索时间减少 50%。
+- 引用准确率 >= 95%。
+
+### 2. 用户故事
+
+- **故事**：作为开发者，我想要用自然语言提问，这样就不必猜测关键词。
+- **AC**：
+  - 支持多轮澄清。
+  - 返回带有"复制"按钮的代码块。
+
+### 3. AI 系统架构
+
+- **所需工具**：`codesearch`, `grep`, `webfetch`。
+
+### 4. 评估
+
+- **基准**：使用 50 个常见开发者问题进行测试。
+- **通过率**：90% 必须匹配预期引用。
