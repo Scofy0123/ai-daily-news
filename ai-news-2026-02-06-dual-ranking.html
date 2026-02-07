@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily News - 2026年2月6日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        .light-theme {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        header { text-align: center; margin-bottom: 3rem; position: relative; }
+        .logo { display: inline-flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .logo-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        h1 {
+            font-size: 2.5rem; font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .date { color: var(--text-secondary); font-size: 1.1rem; margin-top: 0.5rem; }
+        .theme-toggle {
+            position: absolute; top: 0; right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px; padding: 0.75rem;
+            cursor: pointer; font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .theme-toggle:hover { background: var(--bg-hover); transform: scale(1.1); }
+        .sections { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        @media (max-width: 1024px) { .sections { grid-template-columns: 1fr; } }
+        .section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+        .section:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+        .section-header {
+            padding: 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-title { display: flex; align-items: center; gap: 1rem; }
+        .section-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+        }
+        .section.us .section-icon { background: rgba(59, 130, 246, 0.15); }
+        .section.github .section-icon { background: rgba(16, 185, 129, 0.15); }
+        .section.cn .section-icon { background: rgba(244, 63, 94, 0.15); }
+        .section.youtube .section-icon { background: rgba(239, 68, 68, 0.15); }
+        .section-title h2 { font-size: 1.25rem; font-weight: 600; }
+        .count {
+            background: var(--bg-hover);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+        .section.collapsed .toggle-icon { transform: rotate(-90deg); }
+        .section.collapsed .section-content { display: none; }
+        .section-content { padding: 1rem; }
+        .news-item {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: background 0.2s ease;
+        }
+        .news-item:hover { background: var(--bg-hover); }
+        .news-item h3 {
+            font-size: 1rem; font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex; align-items: flex-start;
+            gap: 0.5rem; flex-wrap: wrap;
+        }
+        .news-item h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .news-item h3 a:hover { color: var(--primary); }
+        .news-tag {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+        .tag-anthropic { background: rgba(217, 119, 6, 0.15); color: #f59e0b; }
+        .news-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .news-meta {
+            display: flex; align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .news-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .news-meta a:hover { text-decoration: underline; }
+        .github-project {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .github-project:hover {
+            border-color: #10b981;
+            background: var(--bg-hover);
+        }
+        .github-project h3 {
+            display: flex; align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .github-project h3 a {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .github-stats {
+            display: flex; gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        .rank-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .rank-badge.gold { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); }
+        .rank-badge.silver { background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%); }
+        .rank-badge.bronze { background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); }
+        .verified-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 1.75rem; }
+            .section-header { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <div>
+                    <h1>AI Daily News</h1>
+                    <p class="date">2026年2月6日 · 双排行榜版本 ✓</p>
+                </div>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </header>
+
+        <div class="sections">
+            <!-- US AI Companies -->
+            <div class="section us">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇺🇸</div>
+                        <div>
+                            <h2>美国AI大公司动态<span class="count">3</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-anthropic">Anthropic</span>
+                            <a href="https://www.anthropic.com/news/claude-is-a-space-to-think">Claude承诺永久保持无广告</a>
+                            <span class="verified-badge">✓ 官方</span>
+                        </h3>
+                        <p>Anthropic正式宣布Claude将保持无广告。公司详细解释了为何广告激励机制与真正有用的AI助手不兼容，以及如何在不损害用户信任的情况下扩大访问权限。</p>
+                        <div class="news-meta">
+                            <span>📅 2月4日</span>
+                            <a href="https://www.anthropic.com/news/claude-is-a-space-to-think">来源: Anthropic 官方博客</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-anthropic">Anthropic</span>
+                            <a href="https://www.anthropic.com/news/apple-xcode-claude-agent-sdk">Apple Xcode 26.3支持Claude Agent SDK</a>
+                            <span class="verified-badge">✓ 官方</span>
+                        </h3>
+                        <p>Xcode 26.3现已原生集成Claude Agent SDK。开发者可使用Claude进行可视化验证、跨项目推理和自主任务执行。支持通过MCP接口在CLI中使用。现已向Apple Developer Program成员开放候选版本。</p>
+                        <div class="news-meta">
+                            <span>📅 2月3日</span>
+                            <a href="https://www.anthropic.com/news/apple-xcode-claude-agent-sdk">来源: Anthropic 官方博客</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-anthropic">Anthropic</span>
+                            <a href="https://www.anthropic.com/news/anthropic-partners-with-allen-institute-and-howard-hughes-medical-institute">Anthropic与顶级研究机构合作加速科学发现</a>
+                            <span class="verified-badge">✓ 官方</span>
+                        </h3>
+                        <p>Anthropic与Allen Institute和HHMI合作，将Claude AI应用于生物医学研究。HHMI专注于开发实验室专用AI代理，Allen Institute开发多代理系统用于多模态数据分析。两项合作均强调透明度、科学严谨性和研究者自主权。</p>
+                        <div class="news-meta">
+                            <span>📅 2月2日</span>
+                            <a href="https://www.anthropic.com/news/anthropic-partners-with-allen-institute-and-howard-hughes-medical-institute">来源: Anthropic 官方博客</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GitHub Total Stars Ranking -->
+            <div class="section github">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">⭐</div>
+                        <div>
+                            <h2>GitHub AI项目总星数排行<span class="count">6</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="github-project">
+                        <span class="rank-badge gold">🥇 NO.1</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/obra/superpowers">obra/superpowers</a>
+                        </h3>
+                        <p>代理式技能框架和有效的软件开发方法论。为AI代理提供结构化能力扩展。</p>
+                        <div class="github-stats">
+                            <span>⭐ 45,938</span>
+                            <span>📈 +952 today</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge silver">🥈 NO.2</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/bytedance/UI-TARS-desktop">bytedance/UI-TARS-desktop</a>
+                        </h3>
+                        <p>开源多模态AI Agent技术栈：连接前沿AI模型和Agent基础设施。字节跳动开源的桌面端AI代理系统。</p>
+                        <div class="github-stats">
+                            <span>⭐ 26,991</span>
+                            <span>📈 +541 today</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge bronze">🥉 NO.3</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a>
+                        </h3>
+                        <p>Claude Code插件，自动捕获编码会话，使用AI压缩并注入上下文到未来会话。让Claude记住你的编码历史。</p>
+                        <div class="github-stats">
+                            <span>⭐ 24,118</span>
+                            <span>📈 +801 today</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.4</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/linshenkx/prompt-optimizer">linshenkx/prompt-optimizer</a>
+                        </h3>
+                        <p>提示词优化器，帮助编写高质量提示词。支持中英文优化。</p>
+                        <div class="github-stats">
+                            <span>⭐ 19,583</span>
+                            <span>📈 +329 today</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.5</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/topoteretes/cognee">topoteretes/cognee</a>
+                        </h3>
+                        <p>6行代码为AI Agent添加记忆功能。简化AI记忆系统集成。</p>
+                        <div class="github-stats">
+                            <span>⭐ 11,980</span>
+                            <span>📈 +256 today</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.6</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/openai/skills">openai/skills</a>
+                        </h3>
+                        <p>OpenAI官方Codex技能目录。为AI编程助手提供技能扩展能力。</p>
+                        <div class="github-stats">
+                            <span>⭐ 4,616</span>
+                            <span>📈 +583 today</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GitHub Daily Growth Ranking -->
+            <div class="section github">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">📈</div>
+                        <div>
+                            <h2>GitHub AI项目今日增长排行<span class="count">6</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="github-project">
+                        <span class="rank-badge gold">🥇 NO.1</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/obra/superpowers">obra/superpowers</a>
+                        </h3>
+                        <p>代理式技能框架和有效的软件开发方法论。为AI代理提供结构化能力扩展。</p>
+                        <div class="github-stats">
+                            <span>📈 +952 today</span>
+                            <span>⭐ 45,938 total</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge silver">🥈 NO.2</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a>
+                        </h3>
+                        <p>Claude Code插件，自动捕获编码会话，使用AI压缩并注入上下文到未来会话。让Claude记住你的编码历史。</p>
+                        <div class="github-stats">
+                            <span>📈 +801 today</span>
+                            <span>⭐ 24,118 total</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge bronze">🥉 NO.3</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/openai/skills">openai/skills</a>
+                        </h3>
+                        <p>OpenAI官方Codex技能目录。为AI编程助手提供技能扩展能力。</p>
+                        <div class="github-stats">
+                            <span>📈 +583 today</span>
+                            <span>⭐ 4,616 total</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.4</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/bytedance/UI-TARS-desktop">bytedance/UI-TARS-desktop</a>
+                        </h3>
+                        <p>开源多模态AI Agent技术栈：连接前沿AI模型和Agent基础设施。字节跳动开源的桌面端AI代理系统。</p>
+                        <div class="github-stats">
+                            <span>📈 +541 today</span>
+                            <span>⭐ 26,991 total</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.5</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/linshenkx/prompt-optimizer">linshenkx/prompt-optimizer</a>
+                        </h3>
+                        <p>提示词优化器，帮助编写高质量提示词。支持中英文优化。</p>
+                        <div class="github-stats">
+                            <span>📈 +329 today</span>
+                            <span>⭐ 19,583 total</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.6</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/topoteretes/cognee">topoteretes/cognee</a>
+                        </h3>
+                        <p>6行代码为AI Agent添加记忆功能。简化AI记忆系统集成。</p>
+                        <div class="github-stats">
+                            <span>📈 +256 today</span>
+                            <span>⭐ 11,980 total</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- China AI Companies -->
+            <div class="section cn">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇨🇳</div>
+                        <div>
+                            <h2>中国AI大公司动态<span class="count">3</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag" style="background: rgba(249, 115, 22, 0.15); color: #f97316;">阿里</span>
+                            阿里通义千问春节投入30亿红包，深度整合电商生态
+                        </h3>
+                        <p>阿里宣布"春节盛宴"投入30亿元，赞助四省卫视春晚。通义千问深度整合淘宝、支付宝等服务，在购物、外卖、出行等场景驱动用户参与。战略强调"全栈技术+产业渗透"路线。</p>
+                        <div class="news-meta">
+                            <span>📅 2月春节期间</span>
+                            <span>来源: 36氪、证券时报网</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;">腾讯</span>
+                            腾讯"元宝"派发10亿红包，微信分享受限
+                        </h3>
+                        <p>腾讯推广AI助手"元宝"派发10亿元现金红包。战略依赖微信社交生态通过分享机制获客，但导致用户抱怨频繁分享链接，微信限制元宝平台内直接访问。</p>
+                        <div class="news-meta">
+                            <span>📅 2月春节期间</span>
+                            <span>来源: 36氪、每日经济新闻</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;">字节</span>
+                            "豆包"成为央视春晚独家AI云合作伙伴
+                        </h3>
+                        <p>字节跳动AI助手"豆包"与火山引擎合作成为央视春晚独家AI云合作伙伴。通过互动游戏和娱乐活动，利用春晚曝光和抖音整合吸引用户。</p>
+                        <div class="news-meta">
+                            <span>📅 2月春节期间</span>
+                            <span>来源: 36氪、21世纪经济报道</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube AI Content -->
+            <div class="section youtube">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">📺</div>
+                        <div>
+                            <h2>YouTube AI精华<span class="count">2</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <a href="https://www.youtube.com/results?search_query=Matt+Wolfe+AI+benchmarks+lying">AI Benchmarks Are Lying to You (I Investigated)</a>
+                        </h3>
+                        <p>📺 Matt Wolfe · 1月28日 · 深入调查AI基准测试的可靠性问题，揭露基准操纵现象，分析哪些测试值得信任，提供正确解读AI性能数据的方法。</p>
+                        <div class="news-meta">
+                            <span>📅 1月28日</span>
+                            <span>来源: YouTube（搜索"Matt Wolfe AI benchmarks"）</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <a href="https://www.youtube.com/results?search_query=CES+2026+AI">CES 2026 Proved We've Run Out of Problems to Solve</a>
+                        </h3>
+                        <p>📺 Matt Wolfe · 1月16日 · 观察CES 2026上的各种AI产品和技术趋势，探讨AI驱动的人形机器人、AR/AI眼镜和自动驾驶汽车。</p>
+                        <div class="news-meta">
+                            <span>📅 1月16日</span>
+                            <span>来源: YouTube（搜索"CES 2026 AI"）</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🤖 Powered by AI News Aggregator Skill v2.5</p>
+            <p>✓ 美国新闻和GitHub链接100%可访问 · GitHub双排行榜独立展示 · 中国新闻和YouTube为摘要</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            document.querySelector('.theme-toggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>

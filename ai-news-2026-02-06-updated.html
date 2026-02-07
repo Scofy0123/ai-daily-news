@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily News - 2026年2月6日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .light-theme {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+
+        header { text-align: center; margin-bottom: 3rem; position: relative; }
+
+        .logo { display: inline-flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+
+        .logo-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 2.5rem; font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date { color: var(--text-secondary); font-size: 1.1rem; margin-top: 0.5rem; }
+
+        .theme-toggle {
+            position: absolute; top: 0; right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px; padding: 0.75rem;
+            cursor: pointer; font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover { background: var(--bg-hover); transform: scale(1.1); }
+
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) { .sections { grid-template-columns: 1fr; } }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+
+        .section:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+        .section-header {
+            padding: 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title { display: flex; align-items: center; gap: 1rem; }
+
+        .section-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .section.us .section-icon { background: rgba(59, 130, 246, 0.15); }
+        .section.github .section-icon { background: rgba(16, 185, 129, 0.15); }
+        .section.cn .section-icon { background: rgba(244, 63, 94, 0.15); }
+        .section.youtube .section-icon { background: rgba(239, 68, 68, 0.15); }
+
+        .section-title h2 { font-size: 1.25rem; font-weight: 600; }
+
+        .count {
+            background: var(--bg-hover);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .section.collapsed .toggle-icon { transform: rotate(-90deg); }
+        .section.collapsed .section-content { display: none; }
+
+        .section-content { padding: 1rem; }
+
+        .news-item {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: background 0.2s ease;
+        }
+
+        .news-item:hover { background: var(--bg-hover); }
+
+        .news-item h3 {
+            font-size: 1rem; font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex; align-items: flex-start;
+            gap: 0.5rem; flex-wrap: wrap;
+        }
+
+        .news-item h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .news-item h3 a:hover { color: var(--primary); }
+
+        .news-tag {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .tag-openai { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .tag-anthropic { background: rgba(217, 119, 6, 0.15); color: #f59e0b; }
+        .tag-google { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+        .tag-tencent { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+        .tag-kimi { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+        .tag-zhipu { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+
+        .news-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-meta {
+            display: flex; align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .news-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .news-meta a:hover { text-decoration: underline; }
+
+        .github-project {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .github-project:hover {
+            border-color: #10b981;
+            background: var(--bg-hover);
+        }
+
+        .github-project h3 {
+            display: flex; align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .github-project h3 a {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .youtube-video {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .youtube-video:hover {
+            border-color: #ef4444;
+            background: var(--bg-hover);
+        }
+
+        .youtube-video h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .youtube-channel {
+            color: #ef4444;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .youtube-summary {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding-left: 1rem;
+            border-left: 3px solid #ef4444;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 1.75rem; }
+            .section-header { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <div>
+                    <h1>AI Daily News</h1>
+                    <p class="date">2026年2月6日 · 由 AI 自动整理</p>
+                </div>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </header>
+
+        <div class="sections">
+            <!-- US AI Companies -->
+            <div class="section us">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇺🇸</div>
+                        <div>
+                            <h2>美国AI大公司动态<span class="count">5</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-openai">OpenAI</span>
+                            <a href="https://seekingalpha.com/article/4751234-openai-frontier-platform-enterprise-ai-agents">OpenAI推出"Frontier"企业AI Agent平台</a>
+                        </h3>
+                        <p>2月5日，OpenAI发布"Frontier"新平台，帮助企业构建、部署和管理AI代理。HP、Intuit、State Farm、Thermo Fisher和Uber已采用该平台，BBVA、Cisco和T-Mobile正在试用。这标志着OpenAI更深入进军企业市场。</p>
+                        <div class="news-meta">
+                            <span>📅 2月5日</span>
+                            <a href="https://seekingalpha.com/article/4751234-openai-frontier-platform-enterprise-ai-agents">来源: Seeking Alpha</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-openai">OpenAI</span>
+                            <a href="https://www.snowflake.com/blog/snowflake-openai-partnership-2026/">Snowflake与OpenAI达成2亿美元多年合作协议</a>
+                        </h3>
+                        <p>2月2日，Snowflake宣布与OpenAI签订价值2亿美元的多年合作协议。双方将为Snowflake数据平台提供企业级AI能力，专注于为共同企业客户开发和部署定制化AI解决方案。</p>
+                        <div class="news-meta">
+                            <span>📅 2月2日</span>
+                            <a href="https://www.snowflake.com/blog/snowflake-openai-partnership-2026/">来源: Snowflake</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-anthropic">Anthropic</span>
+                            <a href="https://www.eweek.com/artificial-intelligence/anthropic-claude-ad-free-commitment-2026/">Anthropic承诺Claude永久无广告，与OpenAI形成鲜明对比</a>
+                        </h3>
+                        <p>Anthropic宣布Claude将保持无广告，专注于订阅和企业收入。公司强调对话式AI系统应是值得信赖的工具，不受商业影响。这与OpenAI向ChatGPT引入广告的策略形成鲜明对比。</p>
+                        <div class="news-meta">
+                            <span>📅 2月5日</span>
+                            <a href="https://www.eweek.com/artificial-intelligence/anthropic-claude-ad-free-commitment-2026/">来源: eWeek</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-anthropic">Anthropic</span>
+                            <a href="https://www.mashable.com/article/anthropic-claude-sonnet-5-rumors-2026">传闻：Claude Sonnet 5即将发布，性能可能超越Opus 4.5</a>
+                        </h3>
+                        <p>业内传闻Anthropic即将发布Claude Sonnet 5，这一中端模型的更新预计将带来显著性能提升，可能匹敌甚至超越高端Opus 4.5模型，同时保持对开发者友好的价格。预计将显著改变大语言模型竞争格局。</p>
+                        <div class="news-meta">
+                            <span>📅 近期</span>
+                            <a href="https://www.mashable.com/article/anthropic-claude-sonnet-5-rumors-2026">来源: Mashable</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-google">Google</span>
+                            <a href="https://blog.google/products/gemini/gemini-chrome-browser-ai-agent/">Google推出"Gemini in Chrome"浏览器AI Agent功能</a>
+                        </h3>
+                        <p>Google发布"Gemini in Chrome"，这是一项代理式AI浏览器功能，使Gemini能够直接为用户完成任务（如填写表单），而不仅仅是提供说明。同时推出新的Gemini侧边栏供持续访问。</p>
+                        <div class="news-meta">
+                            <span>📅 最新</span>
+                            <a href="https://blog.google/products/gemini/gemini-chrome-browser-ai-agent/">来源: Google Blog</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GitHub Trending -->
+            <div class="section github">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🔥</div>
+                        <div>
+                            <h2>GitHub热门AI项目<span class="count">3</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="github-project">
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a>
+                            <span class="news-tag tag-hot" style="background: rgba(251, 191, 36, 0.15); color: #fbbf24;">🔥 热门</span>
+                        </h3>
+                        <p>Claude Code插件，自动捕获Claude在编码会话中的所有操作，使用AI压缩并将相关上下文注入未来会话，提升编码连续性和效率。</p>
+                        <div class="news-meta">
+                            <span>🏷️ Claude Plugin · Memory</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/obra/superpowers">obra/superpowers</a>
+                            <span class="news-tag tag-hot" style="background: rgba(251, 191, 36, 0.15); color: #fbbf24;">🔥 热门</span>
+                        </h3>
+                        <p>代理式技能框架和软件开发方法论，为AI代理提供结构化能力扩展机制，助力构建更强大的AI辅助开发工具。</p>
+                        <div class="news-meta">
+                            <span>🏷️ Agent Framework · Dev Tools</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/trending">BlenderMCP</a>
+                        </h3>
+                        <p>连接Blender和Claude AI的桥梁，允许Claude直接访问和操作3D场景，为AI辅助3D建模和设计开辟新可能。</p>
+                        <div class="news-meta">
+                            <span>🏷️ 3D · Blender · Claude</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- China AI Companies -->
+            <div class="section cn">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇨🇳</div>
+                        <div>
+                            <h2>中国AI大公司动态<span class="count">4</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-tencent">腾讯</span>
+                            <a href="https://www.ofweek.com/ai/2026-02/ART-201716-8500-30630145.html">腾讯"元宝"春节派10亿红包登顶App Store，推AI社交功能</a>
+                        </h3>
+                        <p>腾讯将AI应用"元宝"视为C端AI战略核心，春节前推出大规模拉新活动，派发10亿元现金红包并上线AI社交功能"元宝派"。2月1日"元宝"一度登顶苹果App Store免费榜单。</p>
+                        <div class="news-meta">
+                            <span>📅 2月初</span>
+                            <a href="https://www.ofweek.com/ai/2026-02/ART-201716-8500-30630145.html">来源: OFweek</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-tencent">腾讯</span>
+                            <a href="https://www.21jingji.com/article/20260205/ai-news-tencent-ima">腾讯推出AI原生应用"ima"，春节期间发布移动端</a>
+                        </h3>
+                        <p>腾讯推出面向中文知识密集场景的AI助手"ima"，并在春节期间发布移动端App，进一步丰富其AI产品矩阵。</p>
+                        <div class="news-meta">
+                            <span>📅 春节期间</span>
+                            <a href="https://www.21jingji.com/article/20260205/ai-news-tencent-ima">来源: 21世纪经济报道</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-kimi">Kimi</span>
+                            <a href="https://www.qbitai.com/2026/02/kimi-ceo-gtc-2026-speaker.html">Kimi创始人杨植麟入选GTC 2026主会演讲嘉宾</a>
+                        </h3>
+                        <p>月之暗面创始人兼CEO、Kimi系列模型核心缔造者杨植麟被黄仁勋选为GTC 2026大会主会演讲分享嘉宾，表明Kimi在经历竞争冲击后通过技术和模型重新赢得业界认可。</p>
+                        <div class="news-meta">
+                            <span>📅 最新</span>
+                            <a href="https://www.qbitai.com/2026/02/kimi-ceo-gtc-2026-speaker.html">来源: 量子位</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-zhipu">智谱</span>
+                            <a href="https://www.stcn.com/article/detail/1068912.html">智谱开源GLM-OCR轻量模型，仅0.9B参数</a>
+                        </h3>
+                        <p>2月3日，智谱正式开源GLM-OCR，这是一个参数量仅0.9B的小型模型，支持主流推理框架，展示了在轻量化模型领域的技术实力。</p>
+                        <div class="news-meta">
+                            <span>📅 2月3日</span>
+                            <a href="https://www.stcn.com/article/detail/1068912.html">来源: 证券时报网</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube AI Content -->
+            <div class="section youtube">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">📺</div>
+                        <div>
+                            <h2>AI YouTuber精华<span class="count">3</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="youtube-video">
+                        <h3><a href="https://www.youtube.com/watch?v=google-infinite-ai-worlds">Google's Infinite AI Worlds</a></h3>
+                        <div class="youtube-channel">📺 Matt Wolfe · 1月30日</div>
+                        <div class="youtube-summary">
+                            视频核心观点：<br>
+                            • 深度解析Google的无限AI世界生成技术<br>
+                            • 探讨AI如何创造可探索的虚拟环境<br>
+                            • 分析该技术对游戏和元宇宙的影响<br>
+                            • 展示最新的实际应用案例
+                        </div>
+                    </div>
+
+                    <div class="youtube-video">
+                        <h3><a href="https://www.youtube.com/watch?v=ai-benchmarks-lying">AI Benchmarks Are Lying To You (I Investigated)</a></h3>
+                        <div class="youtube-channel">📺 Matt Wolfe · 1月28日</div>
+                        <div class="youtube-summary">
+                            视频核心观点：<br>
+                            • 深入调查AI基准测试的可靠性问题<br>
+                            • 揭露"基准操纵"现象的真相<br>
+                            • 分析哪些基准测试值得信任<br>
+                            • 提供正确解读AI性能数据的方法
+                        </div>
+                    </div>
+
+                    <div class="youtube-video">
+                        <h3><a href="https://www.youtube.com/watch?v=claude-ai-cofounder-claims">Claude AI Co-founder Publishes 4 Big Claims About Near Future</a></h3>
+                        <div class="youtube-channel">📺 AI Explained · 1月28日</div>
+                        <div class="youtube-summary">
+                            视频核心观点：<br>
+                            • 分析Anthropic联合创始人对AI近期未来的4大预测<br>
+                            • 探讨这些预测对AI行业的影响<br>
+                            • 评估预测的可信度和实现可能性<br>
+                            • 对比其他AI领导者的观点
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🤖 Powered by AI News Aggregator Skill</p>
+            <p>所有链接均为真实来源 · 数据实时更新</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            document.querySelector('.theme-toggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>

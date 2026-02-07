@@ -1,0 +1,6 @@
+node_modules/
+.ds_store
+.DS_Store
+.claude/
+antigravity-claude-setup.sh
+*.log

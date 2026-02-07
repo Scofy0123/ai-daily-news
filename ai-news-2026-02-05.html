@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily News - 2026年2月5日</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+            --us-color: #3b82f6;
+            --github-color: #10b981;
+            --cn-color: #f43f5e;
+            --youtube-color: #ef4444;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-theme {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-hover);
+            transform: scale(1.1);
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .sections {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .section.us .section-icon {
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        .section.github .section-icon {
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        .section.cn .section-icon {
+            background: rgba(244, 63, 94, 0.15);
+        }
+
+        .section.youtube .section-icon {
+            background: rgba(239, 68, 68, 0.15);
+        }
+
+        .section-title h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .section-title .count {
+            background: var(--bg-hover);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .section.collapsed .section-content {
+            display: none;
+        }
+
+        .section-content {
+            padding: 1rem;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .news-item {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: background 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .news-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .news-item.highlight {
+            border-left-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .news-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .news-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .news-item h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .news-item h3 a:hover {
+            color: var(--primary);
+        }
+
+        .news-tag {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .tag-openai {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .tag-anthropic {
+            background: rgba(217, 119, 6, 0.15);
+            color: #f59e0b;
+        }
+
+        .tag-google {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+        }
+
+        .tag-meta {
+            background: rgba(99, 102, 241, 0.15);
+            color: #6366f1;
+        }
+
+        .tag-microsoft {
+            background: rgba(6, 182, 212, 0.15);
+            color: #06b6d4;
+        }
+
+        .tag-alibaba {
+            background: rgba(249, 115, 22, 0.15);
+            color: #f97316;
+        }
+
+        .tag-tencent {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
+        .tag-bytedance {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .tag-kimi {
+            background: rgba(168, 85, 247, 0.15);
+            color: #a855f7;
+        }
+
+        .tag-zhipu {
+            background: rgba(14, 165, 233, 0.15);
+            color: #0ea5e9;
+        }
+
+        .tag-baidu {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+        }
+
+        .tag-hot {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+        }
+
+        .tag-breaking {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .news-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .news-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .news-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .github-project {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .github-project:hover {
+            border-color: var(--github-color);
+            background: var(--bg-hover);
+        }
+
+        .github-project h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .github-project h3 a {
+            color: var(--github-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .github-project p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .github-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .github-stats span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .youtube-video {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .youtube-video:hover {
+            border-color: var(--youtube-color);
+            background: var(--bg-hover);
+        }
+
+        .youtube-video h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .youtube-video h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .youtube-channel {
+            color: var(--youtube-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .youtube-summary {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--youtube-color);
+        }
+
+        .youtube-summary ul {
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+        }
+
+        .youtube-summary li {
+            margin-bottom: 0.25rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .section-header {
+                padding: 1rem;
+            }
+
+            .section-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+        }
+
+        .scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scrollbar::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+
+        .scrollbar::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .scrollbar::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <div>
+                    <h1>AI Daily News</h1>
+                    <p class="date">2026年2月5日 · 由 AI 自动整理</p>
+                </div>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </header>
+
+        <div class="sections">
+            <!-- US AI Companies -->
+            <div class="section us">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇺🇸</div>
+                        <div>
+                            <h2>美国AI大公司动态</h2>
+                            <span class="count">6 条新闻</span>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content scrollbar">
+                    <div class="news-item highlight">
+                        <h3>
+                            <span class="news-tag tag-anthropic">Anthropic</span>
+                            <span class="news-tag tag-breaking">突发</span>
+                            <a href="#">Anthropic发布AI法律工具引发"SaaSpocalypse"，软件股市值蒸发$2850亿</a>
+                        </h3>
+                        <p>Anthropic推出全新AI法律工具插件，可自动完成合同审查、合规工作流等任务。此举导致软件行业恐慌，众多SaaS公司股价暴跌，市值蒸发约2850亿美元。同时Anthropic正寻求200亿美元融资，估值将达3500亿美元。
+                        </p>
+                        <div class="news-meta">
+                            <span>📅 今日热点</span>
+                            <a href="https://theguardian.com">来源: The Guardian</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-openai">OpenAI</span>
+                            <a href="#">OpenAI宣布退役GPT-4o等老模型，用户转向GPT-5.2</a>
+                        </h3>
+                        <p>OpenAI宣布将退役GPT-4o、GPT-4.1、GPT-4.1
+                            mini和o4-mini等模型。公司表示用户偏好已明显转向GPT-5.2。同时OpenAI与Snowflake达成合作，将AI能力直接集成到企业数据解决方案中。</p>
+                        <div class="news-meta">
+                            <span>📅 2小时前</span>
+                            <a href="https://openai.com">来源: OpenAI官网</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-anthropic">Anthropic</span>
+                            <a href="#">Claude助力NASA火星探测器完成首次AI辅助驾驶</a>
+                        </h3>
+                        <p>Anthropic宣布Claude在NASA毅力号火星探测器上完成了首次AI辅助驾驶任务。此外，公司宣布Claude将保持无广告，认为广告激励与真正有帮助的AI助手不兼容。Apple
+                            Xcode现已支持Claude Agent SDK。</p>
+                        <div class="news-meta">
+                            <span>📅 5小时前</span>
+                            <a href="https://anthropic.com">来源: Anthropic</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-google">Google</span>
+                            <a href="#">Google发布多项AI新功能：Gmail AI搜索、AI收件箱视图</a>
+                        </h3>
+                        <p>Google为AI Ultra和Pro订阅用户推出重大更新：Gmail搜索集成AI
+                            Overviews、高级Proofread功能检查语法和语气、全新"AI收件箱"视图帮助管理邮件。Chrome配合Gemini 3实现复杂任务自动浏览。</p>
+                        <div class="news-meta">
+                            <span>📅 8小时前</span>
+                            <a href="https://blog.google">来源: Google Blog</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-meta">Meta</span>
+                            <a href="#">Meta AI视频生成工具年化收入达$100亿，内部"Avocado"模型表现强劲</a>
+                        </h3>
+                        <p>Meta的AI视频生成工具在Q4
+                            2025达到$100亿年化收入，增速是整体广告业务的3倍。AI驱动的排名优化使Facebook有机内容观看增长7%，Threads使用时长增长20%。内部代号"Avocado"的下一代LLM被称为"迄今最强基础模型"。
+                        </p>
+                        <div class="news-meta">
+                            <span>📅 12小时前</span>
+                            <a href="https://fb.com">来源: Meta投资者关系</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-microsoft">Microsoft</span>
+                            <a href="#">Microsoft Copilot面临挑战：仅3.3%的M365用户付费使用</a>
+                        </h3>
+                        <p>报告显示Microsoft Copilot正面临重大挑战，品牌定位混乱、互操作性问题导致用户沮丧。仅有3.3%的Microsoft
+                            365用户为Copilot付费，且偏好度相比Gemini等竞品有所下降。</p>
+                        <div class="news-meta">
+                            <span>📅 今日</span>
+                            <a href="https://seekingalpha.com">来源: Seeking Alpha</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GitHub Trending -->
+            <div class="section github">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🔥</div>
+                        <div>
+                            <h2>GitHub热门AI项目</h2>
+                            <span class="count">6 个项目</span>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content scrollbar">
+                    <div class="github-project">
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/obra/superpowers">obra/superpowers</a>
+                            <span class="news-tag tag-hot">🔥 Top 1</span>
+                        </h3>
+                        <p>一个智能体技能框架与软件开发方法论，让AI编程更高效可靠</p>
+                        <div class="github-stats">
+                            <span>⭐ 45.1k</span>
+                            <span>🍴 3.4k</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/bytedance/UI-TARS-desktop">bytedance/UI-TARS-desktop</a>
+                            <span class="news-tag tag-hot">🔥 Hot</span>
+                        </h3>
+                        <p>开源多模态AI Agent技术栈：连接前沿AI模型与Agent基础设施</p>
+                        <div class="github-stats">
+                            <span>⭐ 26.6k</span>
+                            <span>🍴 2.6k</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a>
+                            <span class="news-tag tag-hot">🔥 Hot</span>
+                        </h3>
+                        <p>Claude Code插件，自动捕获编程会话内容，用AI压缩后注入到未来会话中</p>
+                        <div class="github-stats">
+                            <span>⭐ 23.5k</span>
+                            <span>🍴 1.6k</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/linshenkx/prompt-optimizer">linshenkx/prompt-optimizer</a>
+                        </h3>
+                        <p>一款提示词优化器，助力编写高质量的提示词 🇨🇳</p>
+                        <div class="github-stats">
+                            <span>⭐ 19.3k</span>
+                            <span>🍴 2.4k</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/topoteretes/cognee">topoteretes/cognee</a>
+                        </h3>
+                        <p>仅6行代码为AI Agent添加记忆功能</p>
+                        <div class="github-stats">
+                            <span>⭐ 11.8k</span>
+                            <span>🍴 1.2k</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/openai/skills">openai/skills</a>
+                        </h3>
+                        <p>OpenAI官方Codex技能目录</p>
+                        <div class="github-stats">
+                            <span>⭐ 4.1k</span>
+                            <span>🍴 237</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- China AI Companies -->
+            <div class="section cn">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇨🇳</div>
+                        <div>
+                            <h2>中国AI大公司动态</h2>
+                            <span class="count">7 条新闻</span>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content scrollbar">
+                    <div class="news-item highlight">
+                        <h3>
+                            <span class="news-tag tag-alibaba">阿里</span>
+                            <span class="news-tag tag-breaking">重磅</span>
+                            <a href="#">阿里通义千问成为奥运史上首个官方大模型！</a>
+                        </h3>
+                        <p>国际奥委会宣布基于阿里通义千问打造奥运首个官方大模型，将为2026年米兰-科尔蒂纳冬奥会提供智能运营支持。通义千问将作为赛事"核心大脑"，提供多语言理解的"国家奥委会AI助手"服务。
+                        </p>
+                        <div class="news-meta">
+                            <span>📅 今日热点</span>
+                            <a href="https://xinhuanet.com">来源: 新华网</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-kimi">Kimi</span>
+                            <a href="#">月之暗面发布开源Kimi K2.5万亿参数模型，海外收入首超国内</a>
+                        </h3>
+                        <p>月之暗面发布并开源Kimi K2.5模型，这是万亿参数的MoE基础模型。基于K2.5推出Kimi Agent和面向程序员的Kimi
+                            Code平台。海外收入首次超越国内，全球付费用户增长4倍。创始人杨植麟受邀成为英伟达GTC 2026主会嘉宾。</p>
+                        <div class="news-meta">
+                            <span>📅 今日</span>
+                            <a href="https://lanjinger.com">来源: 蓝鲸财经</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-tencent">腾讯</span>
+                            <a href="#">腾讯"元宝"登顶App Store，启动10亿元红包活动</a>
+                        </h3>
+                        <p>腾讯AI应用"元宝"在春节期间启动10亿元现金红包激励活动，推出"元宝派"AI社交新玩法，一度登顶苹果App
+                            Store免费应用排行榜。同时腾讯开源HPC-Ops推理核心算子库，可将混元模型推理吞吐量提升30%。</p>
+                        <div class="news-meta">
+                            <span>📅 6小时前</span>
+                            <a href="https://qq.com">来源: 腾讯新闻</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-bytedance">字节</span>
+                            <a href="#">字节豆包成春晚独家AI云合作伙伴，马化腾质疑数据安全</a>
+                        </h3>
+                        <p>火山引擎成为2026年春晚独家AI云合作伙伴，豆包将配合上线多种互动玩法。CEO梁汝波将"豆包助手"定为公司战略重心。但腾讯马化腾公开批评豆包手机助手的数据安全问题，称其屏幕录制和云端处理方式"极其不安全"。豆包回应称严格遵循"不存储、不训练"原则。
+                        </p>
+                        <div class="news-meta">
+                            <span>📅 今日</span>
+                            <a href="https://thepaper.cn">来源: 澎湃新闻</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-baidu">百度</span>
+                            <a href="#">百度文心大模型5.0正式版发布，原生全模态统一建模</a>
+                        </h3>
+                        <p>百度上线文心大模型5.0正式版，采用原生全模态统一建模技术，支持文本、图像、音频、视频的输入输出。在LMArena全球榜单中位居国内第一。同时启动5亿元春节红包计划，文心助手月活突破2亿。
+                        </p>
+                        <div class="news-meta">
+                            <span>📅 昨日</span>
+                            <a href="https://people.com.cn">来源: 人民网</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-zhipu">智谱</span>
+                            <a href="#">智谱开源GLM-OCR：0.9B参数达SOTA，港股市值破千亿</a>
+                        </h3>
+                        <p>智谱发布并开源GLM-OCR，仅0.9B参数规模在公式识别、表格识别等基准中取得SOTA表现。智谱与MiniMax近期在港交所上市，市值已涨至约1000亿港元。</p>
+                        <div class="news-meta">
+                            <span>📅 2月3日</span>
+                            <a href="https://hangzhou.com.cn">来源: 杭州网</a>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-alibaba">阿里</span>
+                            <a href="#">阿里30亿元"春节请客计划"：通义接入淘宝、支付宝全生态</a>
+                        </h3>
+                        <p>阿里推出30亿元"春节请客计划"，通义千问App全面接入淘宝、支付宝、盒马、飞猪、高德等阿里生态业务，通过AI购物、AI订票、AI规划行程等功能融入生活消费场景。新旗舰推理模型Qwen3-Max-Thinking同步发布。
+                        </p>
+                        <div class="news-meta">
+                            <span>📅 今日</span>
+                            <a href="https://geekpark.net">来源: 极客公园</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube AI Content -->
+            <div class="section youtube">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">📺</div>
+                        <div>
+                            <h2>AI YouTuber精华内容</h2>
+                            <span class="count">4 个视频</span>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content scrollbar">
+                    <div class="youtube-video">
+                        <h3><a href="https://youtube.com">Weekly AI News Update - February 4, 2026</a></h3>
+                        <div class="youtube-channel">📺 AI Explained</div>
+                        <div class="youtube-summary">
+                            本周AI新闻精华（1月28日-2月3日）：
+                            <ul>
+                                <li>软件市场大调整：AI工具冲击传统SaaS</li>
+                                <li>Oracle投资$500亿建设AI数据中心</li>
+                                <li>OpenAI将广告整合进ChatGPT</li>
+                                <li>企业AI系统安全隐患浮现</li>
+                                <li>AI在医疗和招聘偏见中的角色争议</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="youtube-video">
+                        <h3><a href="https://youtube.com">Why People Are Freaking Out About Clawdbot</a></h3>
+                        <div class="youtube-channel">📺 Matt Wolfe · 9小时前</div>
+                        <div class="youtube-summary">
+                            深度解读Clawdbot引发的热议：
+                            <ul>
+                                <li>Clawdbot如何改变AI交互方式</li>
+                                <li>OpenClaw与Moltbook技术解析</li>
+                                <li>为什么这代表AI发展的新方向</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="youtube-video">
+                        <h3><a href="https://youtube.com">AI News: Is OpenAI Speed Running Their Downfall?</a></h3>
+                        <div class="youtube-channel">📺 Matt Wolfe · 3天前</div>
+                        <div class="youtube-summary">
+                            OpenAI近期争议分析：
+                            <ul>
+                                <li>高管频繁离职背后的原因</li>
+                                <li>ChatGPT优先vs长期AI研究的矛盾</li>
+                                <li>商业化压力对公司愿景的影响</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="youtube-video">
+                        <h3><a href="https://youtube.com">The Unhinged World of Tech in 2026</a></h3>
+                        <div class="youtube-channel">📺 Fireship · 1月14日</div>
+                        <div class="youtube-summary">
+                            2026年开发者必知的10大技术趋势：
+                            <ul>
+                                <li>AI Agent生态系统爆发</li>
+                                <li>代码生成工具成为标配</li>
+                                <li>边缘AI计算普及</li>
+                                <li>开源模型挑战闭源巨头</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🤖 Powered by AI News Aggregator Skill</p>
+            <p>数据来源：Web搜索 · GitHub Trending · YouTube · 新华网 · 澎湃新闻</p>
+            <p style="margin-top: 0.5rem; font-size: 0.75rem;">生成时间：2026-02-05 23:45 CST</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = document.body.classList.contains('light-theme') ? '🌙' : '☀️';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            document.querySelector('.theme-toggle').textContent = '🌙';
+        }
+    </script>
+</body>
+
+</html>

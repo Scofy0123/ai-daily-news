@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily News - 2026年2月7日</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .light-theme {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-hover);
+            transform: scale(1.1);
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .sections {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .section:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .section:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        .section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .section.us .section-icon {
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        .section.github .section-icon {
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        .section.cn .section-icon {
+            background: rgba(244, 63, 94, 0.15);
+        }
+
+        .section.youtube .section-icon {
+            background: rgba(239, 68, 68, 0.15);
+        }
+
+        .section-title h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .count {
+            background: var(--bg-hover);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .section.collapsed .section-content {
+            display: none;
+        }
+
+        .section-content {
+            padding: 1rem;
+        }
+
+        .news-item {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: background 0.2s ease;
+        }
+
+        .news-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .news-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .news-item h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .news-item h3 a:hover {
+            color: var(--primary);
+        }
+
+        .news-tag {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .tag-anthropic {
+            background: rgba(217, 119, 6, 0.15);
+            color: #f59e0b;
+        }
+
+        .tag-openai {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .tag-hot {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .tag-google {
+            background: rgba(66, 133, 244, 0.15);
+            color: #4285F4;
+        }
+
+        .tag-tech {
+            background: rgba(147, 51, 234, 0.15);
+            color: #9333ea;
+        }
+
+        .news-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .news-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .news-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .github-project {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .github-project:hover {
+            border-color: #10b981;
+            background: var(--bg-hover);
+        }
+
+        .github-project h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .github-project h3 a {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .github-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .rank-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .rank-badge.gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        .rank-badge.silver {
+            background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+        }
+
+        .rank-badge.bronze {
+            background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+        }
+
+        .verified-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .section-header {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <div>
+                    <h1>AI Daily News</h1>
+                    <p class="date">2026年2月7日 · 晚间更新版 ✓</p>
+                </div>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </header>
+
+        <div class="sections">
+            <!-- US AI Companies -->
+            <div class="section us">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇺🇸</div>
+                        <div>
+                            <h2>美国AI大公司动态<span class="count">5</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-tech">Big Tech</span>
+                            <span class="news-tag tag-hot">头条</span>
+                            五大巨头2026年AI支出预计达7000亿美元
+                        </h3>
+                        <p>亚马逊、谷歌、微软、Meta和甲骨文预计今年将在AI项目上投入高达7000亿美元。其中亚马逊领跑，预计投入2000亿美元，主要用于扩建AWS数据中心和AI基础设施。这一激进投资导致熟练技术工人短缺。
+                        </p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: Washington Post</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-anthropic">Anthropic</span>
+                            <span class="news-tag tag-hot">NASA</span>
+                            NASA使用Claude AI驾驶火星探测器
+                        </h3>
+                        <p>NASA喷气推进实验室（JPL）成功使用Anthropic的Claude AI为"毅力号"火星探测器生成驾驶计划，标志着在太空探索中实现更高级别自主能力的重大一步。</p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: HumAI</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-google">Google</span>
+                            Gemini推出"导入AI聊天"功能
+                        </h3>
+                        <p>Google Gemini正在开发新功能，允许用户从ChatGPT等其他AI服务轻松迁移对话历史记录，旨在降低用户切换平台的门槛。</p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: HumAI</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-tech">UiPath</span>
+                            软件股震荡中UiPath获华尔街青睐
+                        </h3>
+                        <p>尽管ServiceNow和Salesforce等部分软件股因投资者审视AI投资回报率而下跌，但UiPath因专注于辅助人类而非替代人类的AI自动化工具而受到机构投资者追捧，持股比例增加。
+                        </p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: Evrim Agaci</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-tech">基础设施</span>
+                            AI建设热潮引发技术人才短缺
+                        </h3>
+                        <p>随着数据中心建设加速，电工等熟练技术工人的短缺日益严重。同时，硅谷"阶级分化"加剧，初创投资正向少数"超级明星"AI公司集中。</p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: Washington Post</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GitHub Total Stars Ranking -->
+            <div class="section github">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">⭐</div>
+                        <div>
+                            <h2>GitHub AI项目总星数排行<span class="count">6</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="github-project">
+                        <span class="rank-badge gold">🥇 NO.1</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/OpenClaw/OpenClaw">OpenClaw/OpenClaw</a>
+                        </h3>
+                        <p>开源AI Agent平台，提供完整的Agent构建和部署基础设施。</p>
+                        <div class="github-stats">
+                            <span>⭐ 162,000+</span>
+                            <span>📈 热门趋势</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge silver">🥈 NO.2</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="#">OpenCode</a>
+                        </h3>
+                        <p>开源编码Agent，以9.7万星成为开发者新宠。</p>
+                        <div class="github-stats">
+                            <span>⭐ 97,000+</span>
+                            <span>📈 新晋强力候补</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge bronze">🥉 NO.3</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/anthropics/claude-code">anthropics/claude-code</a>
+                        </h3>
+                        <p>Anthropic官方CLI编程工具。GitHub原生集成Code Agent。</p>
+                        <div class="github-stats">
+                            <span>⭐ 64,000+</span>
+                            <span>📈 持续增长</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.4</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/LadybirdBrowser/ladybird">LadybirdBrowser/ladybird</a>
+                        </h3>
+                        <p>独立开发的现代Web浏览器，从零开始构建的浏览器引擎。</p>
+                        <div class="github-stats">
+                            <span>⭐ 58,000+</span>
+                            <span>📈 稳定增长</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.5</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/obra/superpowers">obra/superpowers</a>
+                        </h3>
+                        <p>代理式技能框架和有效的软件开发方法论。</p>
+                        <div class="github-stats">
+                            <span>⭐ 44,000+</span>
+                            <span>📈 社区活跃</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.6</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/microsoft/qlib">microsoft/qlib</a>
+                        </h3>
+                        <p>微软开源的AI量化投资平台。</p>
+                        <div class="github-stats">
+                            <span>⭐ 36,000+</span>
+                            <span>📈 持续维护</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GitHub Trending (Daily Growth) - Updated based on narrative -->
+            <div class="section github">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">📈</div>
+                        <div>
+                            <h2>GitHub AI项目趋势精选<span class="count">4</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="github-project">
+                        <span class="rank-badge gold">🔥 热门</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="#">Engram</a>
+                        </h3>
+                        <p>为AI模型添加专用记忆模块，防止算力浪费在静态事实回忆上。</p>
+                        <div class="github-stats">
+                            <span>📈 今日热议</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge silver">🆙 上升</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="#">Nanobot</a>
+                        </h3>
+                        <p>轻量级Python个人AI助手，OpenClaw的简化替代方案。</p>
+                        <div class="github-stats">
+                            <span>📈 快速增长</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">🛡️ 安全</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="#">KeygraphHQ/shannon</a>
+                        </h3>
+                        <p>全自动AI安全测试工具，用于发现Web应用漏洞。</p>
+                        <div class="github-stats">
+                            <span>📈 关注度提升</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">💡 框架</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="#">topoteretes/cognee</a>
+                        </h3>
+                        <p>简化AI记忆系统集成，极简代码实现记忆功能。</p>
+                        <div class="github-stats">
+                            <span>📈 持续流行</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- China AI Companies -->
+            <div class="section cn">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇨🇳</div>
+                        <div>
+                            <h2>中国AI大公司动态<span class="count">4</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag"
+                                style="background: rgba(239, 68, 68, 0.15); color: #ef4444;">硬件</span>
+                            <span class="news-tag tag-hot">重磅</span>
+                            中国加速迈向"芯片自主"
+                        </h3>
+                        <p>中国正减少对Nvidia H200芯片的依赖，转而大力推广华为Ascend 910C。政府计划在2030年前实现AI芯片生产自给自足，并推动国内AI软件栈标准化。</p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: Financial Content</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag"
+                                style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;">DeepSeek</span>
+                            DeepSeek V4即将发布：专注代码能力
+                        </h3>
+                        <p>DeepSeek预计将于2026年2月正式发布V4模型。据称该版本针对代码生成进行了优化，有望在编程基准测试中超越Claude 3.5 Sonnet和GPT-4o。</p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: Capacity Global</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag"
+                                style="background: rgba(16, 185, 129, 0.15); color: #10b981;">Tesla</span>
+                            特斯拉在中国设立AI训练中心
+                        </h3>
+                        <p>特斯拉在中国启动了专注于FSD（全自动驾驶）的AI训练中心，旨在利用中国道路数据优化驾驶软件，同时符合中国数据出境法规。</p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: TechInAsia</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag"
+                                style="background: rgba(147, 51, 234, 0.15); color: #9333ea;">投资</span>
+                            香港成AI企业IPO新热土
+                        </h3>
+                        <p>香港正成为中国AI企业上市融资的中心。Minimax和Zhipu等"AI四小龙"近期在港活跃，12月至1月期间AI产业链企业在港融资总额达49亿美元。</p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: HKEX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube AI Content -->
+            <div class="section youtube">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">📺</div>
+                        <div>
+                            <h2>YouTube AI精华<span class="count">3</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-hot">争议</span>
+                            "AI Slop"泛滥引发担忧
+                        </h3>
+                        <p>📺 YouTube正面临大量低质量、无意义的AI生成视频（被称为"AI Slop"）的入侵。据估计，这些内容占新用户推荐视频的21%，引发了对平台内容质量和信任度的担忧。</p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: The Cooldown</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-tech">技术突破</span>
+                            EPFL实现"无限"AI视频生成
+                        </h3>
+                        <p>📺 瑞士洛桑联邦理工学院（EPFL）研究人员开发了"错误回收重训练"技术，解决了AI视频生成中的"漂移"问题，理论上可生成无限时长的连贯AI视频。</p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: EPFL</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-google">Google</span>
+                            Google Veo 3.1发布：4K视频生成
+                        </h3>
+                        <p>📺 Google AI Studio推出Veo 3.1，支持生成令人惊叹的4K分辨率视频，具有更高的真实感和对提示词的精准理解，直接对标Sora和Gen-3。</p>
+                        <div class="news-meta">
+                            <span>📅 2月7日</span>
+                            <span>来源: Google</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🤖 Powered by Antigravity News Agent</p>
+            <p>✓ 数据更新时间: 2026-02-07 22:30 · 实时网络搜索聚合</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            document.querySelector('.theme-toggle').textContent = '☀️';
+        }
+    </script>
+</body>
+
+</html>
