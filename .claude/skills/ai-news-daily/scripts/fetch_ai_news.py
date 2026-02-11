@@ -57,9 +57,7 @@ YOUTUBE_CHANNELS = [
     {"name": "Greg Isenberg", "url": "https://www.youtube.com/@GregIsenberg/videos"},
 ]
 
-# GitHub trending - 需要通过API获取
-GITHUB_API = "https://api.github.com/search/repositories"
-
+# GitHub trending
 # AI关键词过滤
 AI_KEYWORDS = [
     "ai", "artificial intelligence", "machine learning", "deep learning",
@@ -198,43 +196,89 @@ def categorize_news(items: List[Dict]) -> Dict[str, List[Dict]]:
     return categorized
 
 
+def fetch_github_trending() -> List[Dict]:
+    """通过GitHub API获取热门AI项目"""
+    items = []
+    try:
+        # 搜索最近7天创建的，stars数高的，带有ai标签的项目
+        date_7_days_ago = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+        # query = f"topic:ai created:>{date_7_days_ago}"
+        # url = f"https://api.github.com/search/repositories?q={query}&sort=stars&order=desc&per_page=10"
+        
+        # 使用 quote 处理空格等特殊字符
+        q = urllib.parse.quote(f"topic:ai created:>{date_7_days_ago}")
+        url = f"https://api.github.com/search/repositories?q={q}&sort=stars&order=desc&per_page=10"
+        
+        headers = {
+            'User-Agent': 'Mozilla/5.0',
+            'Accept': 'application/vnd.github.v3+json'
+        }
+        
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=10) as response:
+            data = json.loads(response.read().decode('utf-8'))
+            
+            for repo in data.get('items', []):
+                items.append({
+                    'title': repo['full_name'],
+                    'link': repo['html_url'],
+                    'description': repo['description'] or '暂无描述',
+                    'stars': repo['stargazers_count'],
+                    'today_stars': 'N/A', # API不直接提供今日新增，暂略
+                    'source': 'GitHub'
+                })
+    except Exception as e:
+        print(f"抓取GitHub失败: {e}")
+        
+    return items
+
+
 def fetch_all_news() -> Dict:
     """抓取所有新闻源"""
     all_news = {
         'us_companies': [],
         'china_companies': [],
-        'general': [],
-        'youtube': [], # 新增YouTube分类
+        'github': [],
+        'youtube': [], 
         'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'date': datetime.now().strftime('%Y年%m月%d日')
     }
 
+    print("正在获取美国AI公司新闻...")
     # 抓取美国公司新闻
     for url in RSS_SOURCES['us_companies']:
         items = fetch_rss_feed(url)
         all_news['us_companies'].extend(items)
 
+    print("正在获取中国AI新闻...")
     # 抓取中国AI新闻
     for url in RSS_SOURCES['china_ai']:
         items = fetch_rss_feed(url)
         all_news['china_companies'].extend(items)
 
+    print("正在获取科技媒体新闻...")
     # 抓取通用科技新闻并分类
     for url in RSS_SOURCES['tech_news']:
         items = fetch_rss_feed(url)
         categorized = categorize_news(items)
         all_news['us_companies'].extend(categorized['us_companies'])
         all_news['china_companies'].extend(categorized['china_companies'])
-        all_news['general'].extend(categorized['general'])
+        # 通用新闻暂归入美国/国际类别，避免丢失
+        all_news['us_companies'].extend(categorized['general'])
         
+    print("正在获取GitHub热门项目...")
+    all_news['github'] = fetch_github_trending()
+
+    print("正在获取YouTube视频...")
     # 抓取YouTube新闻
     youtube_videos = fetch_youtube_latest(YOUTUBE_CHANNELS)
     all_news['youtube'].extend(youtube_videos)
 
     # 去重
-    for category in ['us_companies', 'china_companies', 'general', 'youtube']:
+    for category in ['us_companies', 'china_companies', 'youtube']:
         seen = set()
         unique_items = []
-        for item in all_news[category]:
+        for item in all_news.get(category, []):
             if item['link'] not in seen:
                 seen.add(item['link'])
                 unique_items.append(item)
@@ -243,6 +287,113 @@ def fetch_all_news() -> Dict:
     return all_news
 
 
+def generate_html_section(items: List[Dict], type: str) -> str:
+    """生成各个板块的HTML"""
+    html = ""
+    if not items:
+        return '<div class="news-item"><p>暂无相关内容</p></div>'
+
+    for item in items:
+        if type == 'news':
+            # 简单的标签提取逻辑
+            tag_class = 'tag-google' # Default
+            tag_text = 'News'
+            
+            title_lower = item['title'].lower()
+            if 'openai' in title_lower: tag_class, tag_text = 'tag-openai', 'OpenAI'
+            elif 'anthropic' in title_lower or 'claude' in title_lower: tag_class, tag_text = 'tag-anthropic', 'Anthropic'
+            elif 'google' in title_lower or 'gemini' in title_lower: tag_class, tag_text = 'tag-google', 'Google'
+            elif 'meta' in title_lower: tag_class, tag_text = 'tag-meta', 'Meta'
+            elif 'alibaba' in title_lower or 'ali' in title_lower: tag_class, tag_text = 'tag-alibaba', 'Alibaba'
+            elif 'tencent' in title_lower: tag_class, tag_text = 'tag-tencent', 'Tencent'
+            
+            html += f"""
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag {tag_class}">{tag_text}</span>
+                    <a href="{item['link']}" target="_blank">{item['title']}</a>
+                </h3>
+                <p>{item['description']}</p>
+                <div class="news-meta">
+                    <span>📅 {item['published']}</span>
+                    <a href="{item['link']}" target="_blank">来源: {item['source']}</a>
+                </div>
+            </div>
+            """
+        elif type == 'github':
+            html += f"""
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="{item['link']}" target="_blank">{item['title']}</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>{item['description']}</p>
+                <div class="github-stats">
+                    <span>⭐ {item.get('stars', 0)}</span>
+                </div>
+            </div>
+            """
+        elif type == 'youtube':
+            html += f"""
+            <div class="youtube-video">
+                <h3><a href="{item['link']}" target="_blank">{item['title']}</a></h3>
+                <div class="youtube-channel">📺 {item['source']}</div>
+            </div>
+            """
+    return html
+
+
+def generate_html(news_data: Dict, output_dir: str = '.'):
+    """生成最终HTML文件"""
+    import os
+    
+    # 确定模板路径
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    template_path = os.path.join(script_dir, '../assets/news_template_v2.html')
+    
+    try:
+        with open(template_path, 'r', encoding='utf-8') as f:
+            template = f.read()
+            
+        # 生成各部分HTML
+        us_news_html = generate_html_section(news_data['us_companies'], 'news')
+        cn_news_html = generate_html_section(news_data['china_companies'], 'news')
+        github_html = generate_html_section(news_data['github'], 'github')
+        youtube_html = generate_html_section(news_data['youtube'], 'youtube')
+        
+        # 历史记录部分 (简化处理，暂为空)
+        history_html = ""
+        
+        # 替换占位符
+        html = template.replace('{{DATE}}', news_data['date'])
+        html = html.replace('{{US_COUNT}}', str(len(news_data['us_companies'])))
+        html = html.replace('{{US_NEWS}}', us_news_html)
+        html = html.replace('{{CN_COUNT}}', str(len(news_data['china_companies'])))
+        html = html.replace('{{CN_NEWS}}', cn_news_html)
+        html = html.replace('{{GITHUB_COUNT}}', str(len(news_data['github'])))
+        html = html.replace('{{GITHUB_PROJECTS}}', github_html)
+        html = html.replace('{{YOUTUBE_COUNT}}', str(len(news_data['youtube'])))
+        html = html.replace('{{YOUTUBE_VIDEOS}}', youtube_html)
+        html = html.replace('{{HISTORY_SECTION}}', history_html)
+        
+        # 保存文件
+        filename = f"ai-news-{datetime.now().strftime('%Y-%m-%d')}.html"
+        output_path = os.path.join(output_dir, filename)
+        
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+            
+        print(f"成功生成日报: {output_path}")
+        return output_path
+        
+    except Exception as e:
+        print(f"生成HTML失败: {e}")
+        return None
+
+
 if __name__ == '__main__':
     news = fetch_all_news()
-    print(json.dumps(news, ensure_ascii=False, indent=2))
+    # print(json.dumps(news, ensure_ascii=False, indent=2))
+    generate_html(news)
+
