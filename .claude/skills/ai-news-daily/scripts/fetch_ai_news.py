@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 from typing import List, Dict
 import re
 import urllib.request
+import urllib.parse
 
 # RSS新闻源配置
 RSS_SOURCES = {

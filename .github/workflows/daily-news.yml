@@ -5,6 +5,12 @@ on:
     # 北京时间早上 8 点 (UTC 0:00)
     - cron: '0 0 * * *'
   workflow_dispatch: # 允许手动触发
+  push: # 允许代码推送触发 (用于测试)
+    branches:
+      - main
+    paths:
+      - '.claude/skills/ai-news-daily/scripts/**'
+      - '.github/workflows/daily-news.yml'
 
 jobs:
   build:
