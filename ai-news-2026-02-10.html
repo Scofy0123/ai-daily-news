@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily News - 2026年2月10日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        .light-theme {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        header { text-align: center; margin-bottom: 3rem; position: relative; }
+        .logo { display: inline-flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .logo-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        h1 {
+            font-size: 2.5rem; font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .date { color: var(--text-secondary); font-size: 1.1rem; margin-top: 0.5rem; }
+        .theme-toggle {
+            position: absolute; top: 0; right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px; padding: 0.75rem;
+            cursor: pointer; font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .theme-toggle:hover { background: var(--bg-hover); transform: scale(1.1); }
+        .sections { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        @media (max-width: 1024px) { .sections { grid-template-columns: 1fr; } }
+        .section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+        .section-header {
+            padding: 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-title { display: flex; align-items: center; gap: 1rem; }
+        .section-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+        }
+        .section.us .section-icon { background: rgba(59, 130, 246, 0.15); }
+        .section.github .section-icon { background: rgba(16, 185, 129, 0.15); }
+        .section.cn .section-icon { background: rgba(244, 63, 94, 0.15); }
+        .section.youtube .section-icon { background: rgba(239, 68, 68, 0.15); }
+        .section-title h2 { font-size: 1.25rem; font-weight: 600; }
+        .count {
+            background: var(--bg-hover);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+        .section.collapsed .toggle-icon { transform: rotate(-90deg); }
+        .section.collapsed .section-content { display: none; }
+        .section-content { padding: 1rem; }
+        .news-item {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: background 0.2s ease;
+        }
+        .news-item:hover { background: var(--bg-hover); }
+        .news-item h3 {
+            font-size: 1rem; font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex; align-items: flex-start;
+            gap: 0.5rem; flex-wrap: wrap;
+        }
+        .news-item h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .news-item h3 a:hover { color: var(--primary); }
+        .news-tag {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+        .tag-anthropic { background: rgba(217, 119, 6, 0.15); color: #f59e0b; }
+        .tag-openai { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .tag-google { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+        .tag-hot { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+        .news-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .news-meta {
+            display: flex; align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .news-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .news-meta a:hover { text-decoration: underline; }
+        .github-project {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .github-project:hover {
+            border-color: #10b981;
+            background: var(--bg-hover);
+        }
+        .github-project h3 {
+            display: flex; align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .github-project h3 a {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .github-stats {
+            display: flex; gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        .rank-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .rank-badge.gold { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); }
+        .rank-badge.silver { background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%); }
+        .rank-badge.bronze { background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <div>
+                    <h1>AI Daily News</h1>
+                    <p class="date">2026年2月10日 · 深度聚合版 ✓</p>
+                </div>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </header>
+
+        <div class="sections">
+            <!-- US AI Companies -->
+            <div class="section us">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇺🇸</div>
+                        <div>
+                            <h2>美国AI巨头动态<span class="count">4</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-anthropic">Anthropic</span>
+                            <span class="news-tag tag-hot">重磅</span>
+                            Anthropic拟融资200亿美元，估值冲向3500亿
+                        </h3>
+                        <p>Anthropic正洽谈一轮超过200亿美元的融资，投后估值将达3500亿美元。资金将用于 Claude 4 的算力扩充、企业级工具开发及安全研究。公司加强了与 AWS 的合作，并计划在2026年中期发布新模型。</p>
+                        <div class="news-meta">
+                            <span>📅 2月10日</span>
+                            <span>来源: TechFundingNews</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-openai">OpenAI</span>
+                            ChatGPT免费版上线 Contextual 广告
+                        </h3>
+                        <p>OpenAI正式向免费版及"Go"计划用户推送广告，广告位于回答底部且与查询内容相关。Sam Altman确认 Codex 增长50%，并暗示即将发布"更新后的聊天模型"。</p>
+                        <div class="news-meta">
+                            <span>📅 2月9日</span>
+                            <span>来源: 9to5Google</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-anthropic">争霸</span>
+                            超级碗广告战：Anthropic "无广告" 理念获胜
+                        </h3>
+                        <p>Anthropic在超级碗投放广告讽刺OpenAI的广告模式，强调"广告会来，但不在 Claude 中"。数据显示该广告在搜索量和网站访问量上均超过了 OpenAI。</p>
+                        <div class="news-meta">
+                            <span>📅 2月</span>
+                            <span>来源: Seeking Alpha</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-google">Google</span>
+                            Google拟发债200亿支持 AI 基础设施
+                        </h3>
+                        <p>Alphabet计划发行200亿美元债券，用于支持2026年高达1850亿美元的资本支出，重点投入 AI 芯片、数据中心及云基础设施。目前 OpenAI 和 Anthropic 均在使用其 TPUs。</p>
+                        <div class="news-meta">
+                            <span>📅 2月</span>
+                            <span>来源: Fool.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GitHub Total Stars Ranking -->
+            <div class="section github">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">⭐</div>
+                        <div>
+                            <h2>GitHub AI项目排行<span class="count">6</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="github-project">
+                        <span class="rank-badge gold">🥇 NO.1</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/OpenClaw/OpenClaw">OpenClaw/OpenClaw</a>
+                        </h3>
+                        <p>当前最火爆的开源 AI Agent 平台，提供完整的代理构建与部署方案。</p>
+                        <div class="github-stats">
+                            <span>⭐ 162,000+</span>
+                            <span>📈 社区热度极高</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge silver">🥈 NO.2</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="#">OpenCode</a>
+                        </h3>
+                        <p>开源编码 Agent，星数迅速增长，成为开发者新宠。</p>
+                        <div class="github-stats">
+                            <span>⭐ 97,000+</span>
+                            <span>📈 编码辅助首选</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge bronze">🥉 NO.3</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/anthropics/claude-code">anthropics/claude-code</a>
+                        </h3>
+                        <p>Anthropic 官方 CLI 编程工具，深受专业开发者喜爱。</p>
+                        <div class="github-stats">
+                            <span>⭐ 64,000+</span>
+                            <span>📈 Agentic Workflow</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.4</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/obra/superpowers">obra/superpowers</a>
+                        </h3>
+                        <p>Agentic 技能框架，为 AI 代理提供结构化能力扩展。</p>
+                        <div class="github-stats">
+                            <span>⭐ 44,000+</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.5</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/microsoft/qlib">microsoft/qlib</a>
+                        </h3>
+                        <p>微软 AI 量化投资平台，持续维护中的金融 AI 标杆。</p>
+                        <div class="github-stats">
+                            <span>⭐ 36,000+</span>
+                        </div>
+                    </div>
+
+                    <div class="github-project">
+                        <span class="rank-badge">NO.6</span>
+                        <h3>
+                            <span>📦</span>
+                            <a href="https://github.com/microsoft/BitNet">microsoft/BitNet</a>
+                        </h3>
+                        <p>1-bit 语言模型框架，旨在减少10倍显存占用。近期关注度暴增。</p>
+                        <div class="github-stats">
+                            <span>⭐ 28,000+</span>
+                            <span>📈 低算力福音</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- China AI Companies -->
+            <div class="section cn">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇨🇳</div>
+                        <div>
+                            <h2>中国AI动态<span class="count">4</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag" style="background: rgba(249, 115, 22, 0.15); color: #f97316;">BAAI</span>
+                            <span class="news-tag tag-hot">Nature</span>
+                            智源研究院发布 Emu3 统一多模态架构
+                        </h3>
+                        <p>智源研究院（BAAI）在《Nature》发表研究，提出 Emu3 统一架构。该架构通过"预测下一个状态"而非仅预测下一个词，实现了图像、文本、视频的跨模态统一学习与生成。</p>
+                        <div class="news-meta">
+                            <span>📅 2月10日</span>
+                            <span>来源: 光明网</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;">南海</span>
+                            "飞羽-1.0"：全球首个南海海气双向耦合大模型
+                        </h3>
+                        <p>中科院南海所等联合发布"飞羽-1.0"，专门针对南海区域。具备自主可控核心数据和双向耦合能力，可用于防灾减灾及科研。</p>
+                        <div class="news-meta">
+                            <span>📅 2月10日</span>
+                            <span>来源: 光明网</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">产业</span>
+                            中国 AI 产业核心规模预计突破 1.2 万亿元
+                        </h3>
+                        <p>新华社报道，中国 AI 正在从"模型战"转向真实应用与智能体（Agent）开发。目前拥有超过 6000 家 AI 企业，专利持有量全球领先。</p>
+                        <div class="news-meta">
+                            <span>📅 2月</span>
+                            <span>来源: 新华网</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6;">上海</span>
+                            "一人公司"（OPC）在沪兴起，AI 工具赋能超级创业者
+                        </h3>
+                        <p>上海出现大量利用 AI 工具运营的"一人公司"。这些创业者在教育、医药、法律等领域通过 AI 降低成本、提高灵活性。</p>
+                        <div class="news-meta">
+                            <span>📅 2月10日</span>
+                            <span>来源: 新浪科技</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube AI Content -->
+            <div class="section youtube">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">📺</div>
+                        <div>
+                            <h2>YouTube AI 趋势<span class="count">3</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item">
+                        <h3>
+                            <span class="news-tag tag-hot">平台</span>
+                            YouTube CEO：AI 已成为平台核心驱动力
+                        </h3>
+                        <p>📺 Neal Mohan 表示 AI 将贯穿创作、发现与安全。目前已有超过 100 万频道每日使用 YouTube 的 AI 创作工具。新功能包括 likeness-based Shorts 制作。</p>
+                        <div class="news-meta">
+                            <span>📅 2月10日</span>
+                            <span>来源: Economic Times</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            严厉打击 "AI Slop" 与深度伪造
+                        </h3>
+                        <p>📺 YouTube 加强了对低质量 AI 生成内容（AI Slop）的清理，并强制要求披露真实感极强的合成媒体。违规深度伪造将被直接移除。</p>
+                        <div class="news-meta">
+                            <span>📅 2月10日</span>
+                            <span>来源: Search Engine Journal</span>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <h3>
+                            AI 驱动广告革命：Google 与 Meta 巨额投入
+                        </h3>
+                        <p>📺 AI 正在重塑广告创意、投放及衡量标准。YouTube 也在测试全自定义的多视图选项及专业订阅计划。</p>
+                        <div class="news-meta">
+                            <span>📅 2月10日</span>
+                            <span>来源: Mi-3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🤖 Powered by Antigravity News Agent</p>
+            <p>✓ 数据更新时间: 2026-02-10 11:30 · 实时网络搜索聚合</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            document.querySelector('.theme-toggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>

@@ -5,12 +5,14 @@ AI新闻RSS抓取脚本
 """
 
 import feedparser
+import requests
 import json
 from datetime import datetime, timedelta
 from typing import List, Dict
 import re
 import urllib.request
 import urllib.parse
+import sys
 
 # RSS新闻源配置
 RSS_SOURCES = {
@@ -77,7 +79,11 @@ def is_ai_related(title: str, description: str = "") -> bool:
 def fetch_rss_feed(url: str, max_items: int = 10) -> List[Dict]:
     """抓取单个RSS源"""
     try:
-        feed = feedparser.parse(url)
+        # Use requests with timeout to prevent hanging
+        response = requests.get(url, timeout=30)
+        response.raise_for_status()
+        
+        feed = feedparser.parse(response.content)
         items = []
 
         for entry in feed.entries[:max_items]:
@@ -394,7 +400,14 @@ def generate_html(news_data: Dict, output_dir: str = '.'):
 
 
 if __name__ == '__main__':
-    news = fetch_all_news()
-    # print(json.dumps(news, ensure_ascii=False, indent=2))
-    generate_html(news)
+    try:
+        news = fetch_all_news()
+        # print(json.dumps(news, ensure_ascii=False, indent=2))
+        output_file = generate_html(news)
+        if not output_file:
+            print("错误: 未能生成HTML文件")
+            sys.exit(1)
+    except Exception as e:
+        print(f"发生未捕获的异常: {e}")
+        sys.exit(1)
 
