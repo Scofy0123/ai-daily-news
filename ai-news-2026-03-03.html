@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily News - 2026年03月03日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+            --us-color: #3b82f6;
+            --github-color: #10b981;
+            --cn-color: #f43f5e;
+            --youtube-color: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .light-theme {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-hover);
+            transform: scale(1.1);
+        }
+
+        /* History Timeline */
+        .history-section {
+            margin-bottom: 2rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .history-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .history-items {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+        .history-items.expanded {
+            max-height: 500px;
+        }
+
+        .history-item {
+            padding: 0.5rem 1rem;
+            background: var(--bg-hover);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .history-item:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Sections Grid */
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .sections {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+
+        .section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .section.us .section-icon { background: rgba(59, 130, 246, 0.15); }
+        .section.github .section-icon { background: rgba(16, 185, 129, 0.15); }
+        .section.cn .section-icon { background: rgba(244, 63, 94, 0.15); }
+        .section.youtube .section-icon { background: rgba(239, 68, 68, 0.15); }
+
+        .section-title h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .count {
+            background: var(--bg-hover);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .section.collapsed .section-content {
+            display: none;
+        }
+
+        /* News Items */
+        .section-content {
+            padding: 1rem;
+        }
+
+        .news-item {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: background 0.2s ease;
+        }
+
+        .news-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .news-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .news-item h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .news-item h3 a:hover {
+            color: var(--primary);
+        }
+
+        .news-tag {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .tag-openai { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .tag-anthropic { background: rgba(217, 119, 6, 0.15); color: #f59e0b; }
+        .tag-google { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+        .tag-meta { background: rgba(99, 102, 241, 0.15); color: #6366f1; }
+        .tag-alibaba { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+        .tag-tencent { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+
+        .news-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .news-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .news-meta a:hover {
+            text-decoration: underline;
+        }
+
+        /* GitHub Projects */
+        .github-project {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .github-project:hover {
+            border-color: var(--github-color);
+            background: var(--bg-hover);
+        }
+
+        .github-project h3 a {
+            color: var(--github-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .github-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* YouTube Videos */
+        .youtube-video {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .youtube-video:hover {
+            border-color: var(--youtube-color);
+            background: var(--bg-hover);
+        }
+
+        .youtube-channel {
+            color: var(--youtube-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .youtube-summary {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--youtube-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 1.75rem; }
+            .section-header { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <div>
+                    <h1>AI Daily News</h1>
+                    <p class="date">2026年03月03日 · 由 AI 自动整理</p>
+                </div>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </header>
+
+        <!-- History Section -->
+        
+
+        <div class="sections">
+            <!-- US AI Companies -->
+            <div class="section us">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇺🇸</div>
+                        <div>
+                            <h2>美国AI大公司动态<span class="count">0</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item"><p>暂无相关内容</p></div>
+                </div>
+            </div>
+
+            <!-- GitHub Trending -->
+            <div class="section github">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🔥</div>
+                        <div>
+                            <h2>GitHub热门AI项目<span class="count">10</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/3DCF-Labs/safepilot" target="_blank">3DCF-Labs/safepilot</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>AI assistant that executes real work, safely.</p>
+                <div class="github-stats">
+                    <span>⭐ 381</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/TriangleMagistrate/DeepSeek-Claw" target="_blank">TriangleMagistrate/DeepSeek-Claw</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>暂无描述</p>
+                <div class="github-stats">
+                    <span>⭐ 178</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/oujingzhou/ai-coding-for-beginners" target="_blank">oujingzhou/ai-coding-for-beginners</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>AI coding for beginners</p>
+                <div class="github-stats">
+                    <span>⭐ 94</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/knostic/OpenAnt" target="_blank">knostic/OpenAnt</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>OpenAnt from Knostic is an open source LLM-based vulnerability discovery product that helps defenders proactively find verified security flaws while minimizing both false positives and false negatives. Stage 1 detects. Stage 2 attacks. What survives is real.</p>
+                <div class="github-stats">
+                    <span>⭐ 84</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/inkdust2021/VibeGuard" target="_blank">inkdust2021/VibeGuard</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>VibeGuard, prevents you from leaking your privacy while vibecoding, letting you vibecode with peace of mind.</p>
+                <div class="github-stats">
+                    <span>⭐ 73</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/gunmetal57qa8q/AimAssist" target="_blank">gunmetal57qa8q/AimAssist</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>AI | AIM | ASSIST | MORE GAME | CS2 | APEX | 2026</p>
+                <div class="github-stats">
+                    <span>⭐ 69</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/Enriquefft/openclaw-kapso-whatsapp" target="_blank">Enriquefft/openclaw-kapso-whatsapp</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>Give your OpenClaw AI agent a WhatsApp number. Official Meta Cloud API via Kapso. No ban risk.</p>
+                <div class="github-stats">
+                    <span>⭐ 62</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/skainguyen1412/antigravity-superpowers" target="_blank">skainguyen1412/antigravity-superpowers</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>Bring Superpowers workflows to Antigravity — brainstorming, planning, TDD, code review, and verification skills ported as close to the original as possible.</p>
+                <div class="github-stats">
+                    <span>⭐ 61</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/TriangleMagistrate/lovable-openclaw" target="_blank">TriangleMagistrate/lovable-openclaw</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>lovable-openclaw — a macOS bootstrap CLI for Lovable. Installs, configures, and verifies a complete development environment in one command.</p>
+                <div class="github-stats">
+                    <span>⭐ 59</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/lidge-jun/cli-jaw" target="_blank">lidge-jun/cli-jaw</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>🦈 2-line install personal AI assistant. 5 engines (Claude, Codex, Gemini, OpenCode, Copilot), 108 skills, zero ban risk.</p>
+                <div class="github-stats">
+                    <span>⭐ 50</span>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+
+            <!-- China AI Companies -->
+            <div class="section cn">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇨🇳</div>
+                        <div>
+                            <h2>中国AI大公司动态<span class="count">6</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3706592101691525?f=rss" target="_blank">前小米高管创业机器人，用“爆品逻辑”做工业通用具身智能</a>
+                </h3>
+                <p>文｜富充 编辑｜苏建勋 小雨智造创始人乔忠良身上，有着“小米系”具身智能创业者的典型特质：善于寻找落地场景，商业化思路很务实。 2023年2月成立起，小雨智造就瞄准“工业通用具身智能”的目标。焊接机器人作为“沿途下蛋”的第一款产品，在2025年第四季度进入客户产线。</p</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-03 02:25</span>
+                    <a href="https://36kr.com/p/3706592101691525?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3697641252646531?f=rss" target="_blank">一条内裤的“远征”： 巴迪高试图用“0手触”撬动一次性内裤的信任缺口 |  早期项目</a>
+                </h3>
+                <p>近两年，一次性内裤在国内市场进入高速增长期。 在旅行出游频繁、“懒人经济”持续升温的背景下，这一原本存在感不高的品类，正从边缘产品走向大众消费的视野。除户外、差旅等高频使用场景外，一次性内裤也逐渐渗透至产后恢复、医疗护理等领域，需求不断外扩，带动纺织服饰、母婴等赛道品牌加速入场，形成一股新的消费热潮。相关数据显示，2022—2024年，我国一次性内裤市场增速超过200%，整</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-03 02:16</span>
+                    <a href="https://36kr.com/p/3697641252646531?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3705907852800136?f=rss" target="_blank">「PureblueAI清蓝」完成数千万元天使轮融资，发布首款AI口碑营销数字员工</a>
+                </h3>
+                <p>作者 | 邓咏仪 编辑 | 苏建勋 36氪获悉，国内AI营销技术服务公司「PureblueAI清蓝」正式宣布完成数千万元人民币天使轮融资。本轮融资由祥峰中国（Vertex China）领投，老股东英诺基金及一村淞灵、36氪跟投。 本轮融资资金，将主要用于新一代产品开发与技术迭代、全行业生态拓展及业务布局，同时将持续携手投资方与生态伙伴，打</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-03 01:00</span>
+                    <a href="https://36kr.com/p/3705907852800136?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3706462657245318?f=rss" target="_blank">8点1氪丨椰树集团再陷擦边营销风波被约谈；电影难看20分钟内可退款40%，一影院试行“观影后悔权”；中欧航线票价暴涨</a>
+                </h3>
+                <p>今日热点导览 伊朗称霍尔木兹海峡已关闭： “不会让一滴石油流出” 雷军：小米机器人已在汽车工厂实习，未来5年大批人形机器人进厂 亚马逊在阿联酋数据中心遭撞击起火 多家金店暂停投资金条销售 北京银行贵金属业务出现BUG BOSS直聘称网传伊朗急招炮兵照片系P图 T</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-03 00:11</span>
+                    <a href="https://36kr.com/p/3706462657245318?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3705604996952453?f=rss" target="_blank">氪星晚报｜马斯克称第二代星链卫星将提供5G速度的太空互联网服务；调整住宿税，日本京都预计增收132亿日元；卢伟冰：小米今年即将发布全新的机器人产品</a>
+                </h3>
+                <p>大公司： 智元机器人等在安徽成立华智天成科技新公司 36氪获悉，爱企查App显示，</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-02 09:47</span>
+                    <a href="https://36kr.com/p/3705604996952453?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3705242771845249?f=rss" target="_blank">破局能源焦虑：正泰安能定义户用光伏下半场</a>
+                </h3>
+                <p><img src="https://img.36krcdn.com/hsossms/20260302/v2_efb9bc062bd14503b097ef9d8842da4b@11416942_oswg7661661oswg5097oswg2979_img_jpg?x-oss-process=image/quality,q_80/format,jpg</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-02 08:06</span>
+                    <a href="https://36kr.com/p/3705242771845249?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+
+            <!-- YouTube AI Content -->
+            <div class="section youtube">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">📺</div>
+                        <div>
+                            <h2>AI YouTuber精华<span class="count">15</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=9jgcT0Fqt7U" target="_blank">Builders Unscripted: Ep. 1 - Peter Steinberger, Creator of OpenClaw</a></h3>
+                <div class="youtube-channel">📺 OpenAI</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=dPn3GBI8lII" target="_blank">Introducing Claude Opus 4.6</a></h3>
+                <div class="youtube-channel">📺 Anthropic</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=l5Wpm4o6k1A" target="_blank">Music AI Sandbox | AI x Creativity: Wyclef Jean</a></h3>
+                <div class="youtube-channel">📺 Google DeepMind</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=BwoCznxxMBw" target="_blank">Morningstar: An AI short film | Runway</a></h3>
+                <div class="youtube-channel">📺 Runway</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=gPj_cQL_wvg" target="_blank">Introducing SAM Audio: The First Unified Multimodal Model for Audio Separation | AI at Meta</a></h3>
+                <div class="youtube-channel">📺 Meta AI</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=1SJiTwbSI58" target="_blank">Rick Beato: Greatest Guitarists of All Time, History \u0026 Future of Music | Lex Fridman Podcast #492</a></h3>
+                <div class="youtube-channel">📺 Lex Fridman</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=eh8bcBIAAFo" target="_blank">Why the traditional design process is dead in the age of AI | Jenny Wen (Design Lead for Claude)</a></h3>
+                <div class="youtube-channel">📺 Lenny's Podcast</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=1B3Ffo8snfY" target="_blank">Full Tutorial: Connect Claude Code to Google, Slack, and Reddit in 40 Min (Skills + MCPs)</a></h3>
+                <div class="youtube-channel">📺 Peter Yang</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=n1E9IZfvGMA" target="_blank">Dario Amodei — “We are near the end of the exponential”</a></h3>
+                <div class="youtube-channel">📺 Dwarkesh Podcast</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=XtPZGVpbzOE" target="_blank">Ex-OpenAI Researcher On Why He Left, His Honest AGI Timeline, \u0026 The Limits of Scaling RL</a></h3>
+                <div class="youtube-channel">📺 Unsupervised Learning</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=5uutda-R0EY" target="_blank">How Google’s Nano Banana Achieved Breakthrough Character Consistency</a></h3>
+                <div class="youtube-channel">📺 Training Data</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=Yw-m0PI2Atk" target="_blank">⚡️ Polsia: Solo Founder Tiny Team from 0 to 1m ARR in 1 month \u0026 the future of Self-Running Companies</a></h3>
+                <div class="youtube-channel">📺 Latent Space</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=WSxVh5WvWZ4" target="_blank">Who's Actually Funding the AI Buildout?</a></h3>
+                <div class="youtube-channel">📺 No Priors</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=EWvNQjAaOHw" target="_blank">How I use LLMs</a></h3>
+                <div class="youtube-channel">📺 Andrej Karpathy</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=s_765enJBy8" target="_blank">4 Skills I’m Learning that AI Can’t Replace (backed by data)</a></h3>
+                <div class="youtube-channel">📺 Jeff Su</div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🤖 Powered by AI News Aggregator Skill</p>
+            <p>数据来源：RSS订阅 · GitHub API · YouTube</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+
+        function toggleHistory() {
+            const items = document.querySelector('.history-items');
+            const icon = document.querySelector('.history-toggle-icon');
+            items.classList.toggle('expanded');
+            icon.textContent = items.classList.contains('expanded') ? '▼' : '▶';
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            document.querySelector('.theme-toggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>
