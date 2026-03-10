@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily News - 2026年03月10日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+            --us-color: #3b82f6;
+            --github-color: #10b981;
+            --cn-color: #f43f5e;
+            --youtube-color: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .light-theme {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-hover);
+            transform: scale(1.1);
+        }
+
+        /* History Timeline */
+        .history-section {
+            margin-bottom: 2rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .history-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .history-items {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+        .history-items.expanded {
+            max-height: 500px;
+        }
+
+        .history-item {
+            padding: 0.5rem 1rem;
+            background: var(--bg-hover);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .history-item:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Sections Grid */
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .sections {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+
+        .section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .section.us .section-icon { background: rgba(59, 130, 246, 0.15); }
+        .section.github .section-icon { background: rgba(16, 185, 129, 0.15); }
+        .section.cn .section-icon { background: rgba(244, 63, 94, 0.15); }
+        .section.youtube .section-icon { background: rgba(239, 68, 68, 0.15); }
+
+        .section-title h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .count {
+            background: var(--bg-hover);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .section.collapsed .section-content {
+            display: none;
+        }
+
+        /* News Items */
+        .section-content {
+            padding: 1rem;
+        }
+
+        .news-item {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: background 0.2s ease;
+        }
+
+        .news-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .news-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .news-item h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .news-item h3 a:hover {
+            color: var(--primary);
+        }
+
+        .news-tag {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .tag-openai { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .tag-anthropic { background: rgba(217, 119, 6, 0.15); color: #f59e0b; }
+        .tag-google { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+        .tag-meta { background: rgba(99, 102, 241, 0.15); color: #6366f1; }
+        .tag-alibaba { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+        .tag-tencent { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+
+        .news-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .news-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .news-meta a:hover {
+            text-decoration: underline;
+        }
+
+        /* GitHub Projects */
+        .github-project {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .github-project:hover {
+            border-color: var(--github-color);
+            background: var(--bg-hover);
+        }
+
+        .github-project h3 a {
+            color: var(--github-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .github-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* YouTube Videos */
+        .youtube-video {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .youtube-video:hover {
+            border-color: var(--youtube-color);
+            background: var(--bg-hover);
+        }
+
+        .youtube-channel {
+            color: var(--youtube-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .youtube-summary {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--youtube-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 1.75rem; }
+            .section-header { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <div>
+                    <h1>AI Daily News</h1>
+                    <p class="date">2026年03月10日 · 由 AI 自动整理</p>
+                </div>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </header>
+
+        <!-- History Section -->
+        
+
+        <div class="sections">
+            <!-- US AI Companies -->
+            <div class="section us">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇺🇸</div>
+                        <div>
+                            <h2>美国AI大公司动态<span class="count">1</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-openai">OpenAI</span>
+                    <a href="https://openai.com/index/openai-to-acquire-promptfoo" target="_blank">OpenAI to acquire Promptfoo</a>
+                </h3>
+                <p>OpenAI is acquiring Promptfoo, an AI security platform that helps enterprises identify and remediate vulnerabilities in AI systems during development.</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-09 10:00</span>
+                    <a href="https://openai.com/index/openai-to-acquire-promptfoo" target="_blank">来源: OpenAI News</a>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+
+            <!-- GitHub Trending -->
+            <div class="section github">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🔥</div>
+                        <div>
+                            <h2>GitHub热门AI项目<span class="count">10</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/viperrcrypto/Siftly" target="_blank">viperrcrypto/Siftly</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>Local Twitter/X bookmark organizer with AI categorization and mindmap visualization</p>
+                <div class="github-stats">
+                    <span>⭐ 1292</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/holysheep123/holysheep-cli" target="_blank">holysheep123/holysheep-cli</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>🐑 One command to configure all AI coding tools — Claude Code, Codex, Gemini CLI, Cursor, Aider & more</p>
+                <div class="github-stats">
+                    <span>⭐ 248</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/ammaarreshi/SkyRoads-Codex" target="_blank">ammaarreshi/SkyRoads-Codex</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>Reverse engineering a DOS game with no source code using Codex 5.4</p>
+                <div class="github-stats">
+                    <span>⭐ 146</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/helenigtxu/blooket" target="_blank">helenigtxu/blooket</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>暂无描述</p>
+                <div class="github-stats">
+                    <span>⭐ 122</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/deborahikssv/Antigravity-claw" target="_blank">deborahikssv/Antigravity-claw</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>暂无描述</p>
+                <div class="github-stats">
+                    <span>⭐ 120</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/get-Lucid/Lucid" target="_blank">get-Lucid/Lucid</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>An intelligence layer grounding autonomous agents in verified, real-time knowledge at scale.</p>
+                <div class="github-stats">
+                    <span>⭐ 101</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/QJHWC/PaperForge" target="_blank">QJHWC/PaperForge</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>End-to-end AI-powered academic paper writing system — from idea generation and literature search to experiment execution, result backfill, and LaTeX paper compilation. Supports multi-LLM routing, SSH remote training, incremental sync, and anti-AI-detection writing style.</p>
+                <div class="github-stats">
+                    <span>⭐ 95</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/heri1845/ai-meme-trading-bot" target="_blank">heri1845/ai-meme-trading-bot</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>Automated trading system for Solana and Base meme coins with AI-powered strategy evaluation. AI trading, AI prediction, AI trading, AI predictiction</p>
+                <div class="github-stats">
+                    <span>⭐ 91</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/jnMetaCode/agency-agents-zh" target="_blank">jnMetaCode/agency-agents-zh</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>AI 智能体专家团队（中文版）— 80+ 个专业 AI 智能体人设，覆盖开发、设计、营销、测试、运维等领域，含小红书/抖音/微信等中国平台原创智能体</p>
+                <div class="github-stats">
+                    <span>⭐ 65</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/BV-Venky/excalidraw-architect-mcp" target="_blank">BV-Venky/excalidraw-architect-mcp</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>An MCP server that generates beautiful Excalidraw architecture diagrams with perfect auto-layout.</p>
+                <div class="github-stats">
+                    <span>⭐ 56</span>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+
+            <!-- China AI Companies -->
+            <div class="section cn">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇨🇳</div>
+                        <div>
+                            <h2>中国AI大公司动态<span class="count">5</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3716518378993281?f=rss" target="_blank">从“平替”到“价值领跑”：国货运动品牌全面突破｜世研消费指数品牌榜Vol.158</a>
+                </h3>
+                <p>本次监测周期内，安踏、骆驼和李宁以1.95、1.91、1.82的综合热度位列榜单综合热度前三。 <img src="https://img.36krcdn.com/hsossms/20260310/v2_1751e171d677426bb82f77593fac6acc@5345065_oswg505918oswg1488oswg2</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-10 02:41</span>
+                    <a href="https://36kr.com/p/3716518378993281?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3715521730933127?f=rss" target="_blank">用智能吉他起家后，这家公司又用AI音乐工作站拿下百万美元众筹，营收数亿｜Insight全球</a>
+                </h3>
+                <p>作者｜黄楠 编辑｜袁斯来 编者按：当出海越来越成为一家中国公司核心战略时，如何征战全球市场就成为一个极其专业的话题。在全球化的演变中，已有不少中国品牌站立潮头。鉴于此，硬氪特推出「Insight全球」专栏，从品牌成长与变迁，探索中国品牌出海的前沿方向与时代契机，为出海玩家与行业提供思考与启发</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-10 01:59</span>
+                    <a href="https://36kr.com/p/3715521730933127?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3716450088793732?f=rss" target="_blank">上海交大教授创业，用AI研发新材料，交大系基金投资｜36氪首发</a>
+                </h3>
+                <p>作者丨欧雪 编辑丨袁斯来 硬氪获悉，AI for Materials（人工智能赋能新材料研发）领域的初创企业——索格智算宣布完成超千万元种子轮融资。本轮融资由启高资本领投，交大菡源资产、紫竹小苗和紫竹科投跟投。资金将主要用于原创AI计算引擎的持续研发、研发团队扩充以及算力基础设施建设。 索格智算成立于2025年9月，创始团队源自上海交通大</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-10 01:28</span>
+                    <a href="https://36kr.com/p/3716450088793732?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3716375591794051?f=rss" target="_blank">8点1氪丨胖东来12名店长共分2.4亿资产利润；Mac mini销量暴增或因OpenClaw爆火导致；2026年中国电影票房在全球占比超28%，领跑全球电影市场</a>
+                </h3>
+                <p>今日热点导览 国内成品油零售调价将开启上调窗口，加满一箱油将多花27.5元 2026年中国电影票房在全球占比超28%，领跑全球电影市场 中国有望成首个在月球找到水的国家 腾讯据称将以新资金重返派拉蒙收购华纳兄弟的交易 腾讯：旗下全场景AI智能体WorkBud</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-10 00:17</span>
+                    <a href="https://36kr.com/p/3716375591794051?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3715472798527617?f=rss" target="_blank">氪星晚报｜国家超算互联网OpenClaw服务接入飞书、企业微信；WPS发布iPadOS首款原生桌面级Office；“红房子・启元”AI妇产科垂直大模型发布</a>
+                </h3>
+                <p>大公司： 由菜鸟运营的全国首个跨境电商零售出口“前置监管仓”正式启用 36氪获悉，</p>
+                <div class="news-meta">
+                    <span>📅 2026-03-09 11:43</span>
+                    <a href="https://36kr.com/p/3715472798527617?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+
+            <!-- YouTube AI Content -->
+            <div class="section youtube">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">📺</div>
+                        <div>
+                            <h2>AI YouTuber精华<span class="count">15</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=8hNcRChDrNk" target="_blank">The Codex app is now on Windows</a></h3>
+                <div class="youtube-channel">📺 OpenAI</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=dPn3GBI8lII" target="_blank">Introducing Claude Opus 4.6</a></h3>
+                <div class="youtube-channel">📺 Anthropic</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=l5Wpm4o6k1A" target="_blank">Music AI Sandbox | AI x Creativity: Wyclef Jean</a></h3>
+                <div class="youtube-channel">📺 Google DeepMind</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=kiwPrAjFGWo" target="_blank">Introducing Runway Characters | Runway</a></h3>
+                <div class="youtube-channel">📺 Runway</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=gPj_cQL_wvg" target="_blank">Introducing SAM Audio: The First Unified Multimodal Model for Audio Separation | AI at Meta</a></h3>
+                <div class="youtube-channel">📺 Meta AI</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=1SJiTwbSI58" target="_blank">Rick Beato: Greatest Guitarists of All Time, History \u0026 Future of Music | Lex Fridman Podcast #492</a></h3>
+                <div class="youtube-channel">📺 Lex Fridman</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=_rcniEb9bLw" target="_blank">The real AI revolution isn’t software. It’s farms, mines, and trucks. | Qasar Younis</a></h3>
+                <div class="youtube-channel">📺 Lenny's Podcast</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=w4RY7PnfRU8" target="_blank">I Watched 6 AI Agents Design an App Together And It Blew My Mind | Tom Krcha</a></h3>
+                <div class="youtube-channel">📺 Peter Yang</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=PAIhVfGbREA" target="_blank">Why Leonardo was a saboteur, Gutenberg went broke, and Florence was weird – Ada Palmer</a></h3>
+                <div class="youtube-channel">📺 Dwarkesh Podcast</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=XtPZGVpbzOE" target="_blank">Ex-OpenAI Researcher On Why He Left, His Honest AGI Timeline, \u0026 The Limits of Scaling RL</a></h3>
+                <div class="youtube-channel">📺 Unsupervised Learning</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=5uutda-R0EY" target="_blank">How Google’s Nano Banana Achieved Breakthrough Character Consistency</a></h3>
+                <div class="youtube-channel">📺 Training Data</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=Io0mAsHkiRY" target="_blank">OpenClaw's Memory Sucks and the fix is simple — Dhravya Shah, Supermemory</a></h3>
+                <div class="youtube-channel">📺 Latent Space</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=WSxVh5WvWZ4" target="_blank">Who's Actually Funding the AI Buildout?</a></h3>
+                <div class="youtube-channel">📺 No Priors</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=EWvNQjAaOHw" target="_blank">How I use LLMs</a></h3>
+                <div class="youtube-channel">📺 Andrej Karpathy</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=ZpXN9M0WLQ4" target="_blank">The Top 1% Build AI Presentations Differently. Here's How.</a></h3>
+                <div class="youtube-channel">📺 Jeff Su</div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🤖 Powered by AI News Aggregator Skill</p>
+            <p>数据来源：RSS订阅 · GitHub API · YouTube</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+
+        function toggleHistory() {
+            const items = document.querySelector('.history-items');
+            const icon = document.querySelector('.history-toggle-icon');
+            items.classList.toggle('expanded');
+            icon.textContent = items.classList.contains('expanded') ? '▼' : '▶';
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            document.querySelector('.theme-toggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>
