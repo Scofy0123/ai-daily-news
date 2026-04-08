@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily News - 2026年04月08日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+            --us-color: #3b82f6;
+            --github-color: #10b981;
+            --cn-color: #f43f5e;
+            --youtube-color: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .light-theme {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-hover);
+            transform: scale(1.1);
+        }
+
+        /* History Timeline */
+        .history-section {
+            margin-bottom: 2rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .history-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .history-items {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+        .history-items.expanded {
+            max-height: 500px;
+        }
+
+        .history-item {
+            padding: 0.5rem 1rem;
+            background: var(--bg-hover);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .history-item:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Sections Grid */
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .sections {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+
+        .section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .section.us .section-icon { background: rgba(59, 130, 246, 0.15); }
+        .section.github .section-icon { background: rgba(16, 185, 129, 0.15); }
+        .section.cn .section-icon { background: rgba(244, 63, 94, 0.15); }
+        .section.youtube .section-icon { background: rgba(239, 68, 68, 0.15); }
+
+        .section-title h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .count {
+            background: var(--bg-hover);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .section.collapsed .section-content {
+            display: none;
+        }
+
+        /* News Items */
+        .section-content {
+            padding: 1rem;
+        }
+
+        .news-item {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: background 0.2s ease;
+        }
+
+        .news-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .news-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .news-item h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .news-item h3 a:hover {
+            color: var(--primary);
+        }
+
+        .news-tag {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .tag-openai { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .tag-anthropic { background: rgba(217, 119, 6, 0.15); color: #f59e0b; }
+        .tag-google { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+        .tag-meta { background: rgba(99, 102, 241, 0.15); color: #6366f1; }
+        .tag-alibaba { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+        .tag-tencent { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+
+        .news-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .news-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .news-meta a:hover {
+            text-decoration: underline;
+        }
+
+        /* GitHub Projects */
+        .github-project {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .github-project:hover {
+            border-color: var(--github-color);
+            background: var(--bg-hover);
+        }
+
+        .github-project h3 a {
+            color: var(--github-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .github-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* YouTube Videos */
+        .youtube-video {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .youtube-video:hover {
+            border-color: var(--youtube-color);
+            background: var(--bg-hover);
+        }
+
+        .youtube-channel {
+            color: var(--youtube-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .youtube-summary {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--youtube-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 1.75rem; }
+            .section-header { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <div>
+                    <h1>AI Daily News</h1>
+                    <p class="date">2026年04月08日 · 由 AI 自动整理</p>
+                </div>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </header>
+
+        <!-- History Section -->
+        
+
+        <div class="sections">
+            <!-- US AI Companies -->
+            <div class="section us">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇺🇸</div>
+                        <div>
+                            <h2>美国AI大公司动态<span class="count">0</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="news-item"><p>暂无相关内容</p></div>
+                </div>
+            </div>
+
+            <!-- GitHub Trending -->
+            <div class="section github">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🔥</div>
+                        <div>
+                            <h2>GitHub热门AI项目<span class="count">10</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/milla-jovovich/mempalace" target="_blank">milla-jovovich/mempalace</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>The highest-scoring AI memory system ever benchmarked. And it's free.</p>
+                <div class="github-stats">
+                    <span>⭐ 17153</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/JuliusBrussee/caveman" target="_blank">JuliusBrussee/caveman</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>🪨 why use many token when few token do trick — Claude Code skill that cuts 65% of tokens by talking like caveman</p>
+                <div class="github-stats">
+                    <span>⭐ 5947</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/kessler/gemma-gem" target="_blank">kessler/gemma-gem</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>Gemma Gem runs Google's Gemma 4 model entirely on-device via WebGPU — no API keys, no cloud, no data leaving your machine.</p>
+                <div class="github-stats">
+                    <span>⭐ 431</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/rasbt/mini-coding-agent" target="_blank">rasbt/mini-coding-agent</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>Minimal and readable coding agent harness implementation in Python to explain the core components of coding agents.</p>
+                <div class="github-stats">
+                    <span>⭐ 408</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/math-ai-org/mathcode" target="_blank">math-ai-org/mathcode</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>MathCode: A Frontier Mathematical Coding Agent</p>
+                <div class="github-stats">
+                    <span>⭐ 263</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/chencore/deep-live-cam-tutorial" target="_blank">chencore/deep-live-cam-tutorial</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>Deep-Live-Cam 完整安装与使用教程 - AI 换脸工具中文指南</p>
+                <div class="github-stats">
+                    <span>⭐ 80</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/abhishekgahlot2/toon-json-render" target="_blank">abhishekgahlot2/toon-json-render</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>Drop-in TOON adapter for json-render - fewer LLM tokens, no new language</p>
+                <div class="github-stats">
+                    <span>⭐ 53</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/swadhinbiswas/Mervelas" target="_blank">swadhinbiswas/Mervelas</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>An independent, high-performance AI coding CLI built with Bun and driven by free resources</p>
+                <div class="github-stats">
+                    <span>⭐ 50</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/nhevers/mica-plugin" target="_blank">nhevers/mica-plugin</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>Claude Code plugin - route compute through MVM nodes on cheap renewable energy. Save tokens, cut inference costs.</p>
+                <div class="github-stats">
+                    <span>⭐ 51</span>
+                </div>
+            </div>
+            
+            <div class="github-project">
+                <h3>
+                    <span>📦</span>
+                    <a href="https://github.com/datadrivenconstruction/OpenConstructionERP" target="_blank">datadrivenconstruction/OpenConstructionERP</a>
+                    <span class="news-tag tag-hot">🔥 Hot</span>
+                </h3>
+                <p>The #1 open-source platform for construction cost estimation. BOQ, 4D/5D, AI, CAD/BIM takeoff, 21 languages, 55K+ cost items</p>
+                <div class="github-stats">
+                    <span>⭐ 43</span>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+
+            <!-- China AI Companies -->
+            <div class="section cn">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">🇨🇳</div>
+                        <div>
+                            <h2>中国AI大公司动态<span class="count">6</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-openai">OpenAI</span>
+                    <a href="https://36kr.com/p/3757404054930182?f=rss" target="_blank">8点1氪丨马斯克在对OpenAI的诉讼中寻求罢免奥特曼职位；宁德时代聘请紫金矿业创始人陈景河；产业链人士：苹果首款折叠屏手机项目正常推进，产品下半年发布</a>
+                </h3>
+                <p>今日热点导览 海康威视回应辟谣“监控系统出现漏洞，300多人被带走” 郭艾伦否认被骗千万 日本餐饮巨头食其家创始人心梗去世 产业链人士：苹果首款折叠屏手机项目正常推进 宇树科技移动机器人新专利获授权 TOP 3大新闻</</p>
+                <div class="news-meta">
+                    <span>📅 2026-04-07 23:53</span>
+                    <a href="https://36kr.com/p/3757404054930182?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3756523983536905?f=rss" target="_blank">氪星晚报｜潘兴广场拟94亿欧元现金加股票收购环球音乐集团；高盛策略师：当前科技股估值带来投资机会；中国央行连续第17个月增持黄金</a>
+                </h3>
+                <p>大公司： 产业链人士：苹果首款折叠屏手机项目正常推进，产品下半年发布 4月6日，有</p>
+                <div class="news-meta">
+                    <span>📅 2026-04-07 11:16</span>
+                    <a href="https://36kr.com/p/3756523983536905?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3756484693967619?f=rss" target="_blank">早期项目 | 前苹果员工做了只AI“肩上宠物”，奇绩创坛孵化，要切年轻人潮玩市场</a>
+                </h3>
+                <p>作者&nbsp;|&nbsp;乔钰杰 编辑&nbsp;|&nbsp;袁斯来 当下市面上的AI陪伴玩具大多围绕儿童与老年人设计，而Blinkko则从一开始就将目标人群指向年轻人。 相比通过语言交流建立陪伴关系，创始人沈彤欣却告诉硬氪：“我们不相信AI真的能陪伴人。” 基于这样的判断，这个获得奇绩创坛投资的早期团队，做出了一</p>
+                <div class="news-meta">
+                    <span>📅 2026-04-07 08:14</span>
+                    <a href="https://36kr.com/p/3756484693967619?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3750675963904513?f=rss" target="_blank">红熊AI完成2.1亿元A轮融资，切入物理AI赛道｜36氪首发</a>
+                </h3>
+                <p>36氪获悉，企业级AI解决方案供应商「红熊AI」已于近日完成 2.1亿元A轮融资，投后估值超15亿元。本轮由华禹创投领投，老股东格睿丰投资、稼沃资本跟投，徐汇资本、上汽美元基金、嘉铭浩春、誉华资产等多家机构参与投资，三位创始团队成员也以本轮估值跟投约3000万元。这已是华禹创投连续第四轮押注红熊AI。&nbsp; 成立于2024年4月7日的红熊AI，主打“记忆科学+全模态大</p>
+                <div class="news-meta">
+                    <span>📅 2026-04-07 02:00</span>
+                    <a href="https://36kr.com/p/3750675963904513?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3756111263384071?f=rss" target="_blank">36氪首发 | 领跑全彩AR微显示屏产品化落地，赛富乐斯完成3亿元C轮融资</a>
+                </h3>
+                <p>作者丨欧雪 编辑丨袁斯来 硬氪获悉，AR显示技术企业——赛富乐斯近日已完成3亿元C轮融资。本轮投资方包括西安西高投繁星投资基金、无锡市梁溪科创产业投资二期基金、安徽金安产业引导基金、上海吉六零山海松金创业投资基金、西安财金龙门成长股权投资合伙企业、西安市人才发展基金等多家机构。资金将主要用于加速AR用全彩微显示屏的量产交付。 赛富乐斯成立</p>
+                <div class="news-meta">
+                    <span>📅 2026-04-07 01:57</span>
+                    <a href="https://36kr.com/p/3756111263384071?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <h3>
+                    <span class="news-tag tag-google">News</span>
+                    <a href="https://36kr.com/p/3754821568578050?f=rss" target="_blank">前迪士尼工程师和Midjourney联创，要做一款“会呼吸”的DIY仿生机器人｜硬氪专访</a>
+                </h3>
+                <p>作者｜黄楠 编辑｜袁斯来 26岁那一年，朱圣杰以2亿美元的价格，卖掉了第二家创业公司。 那个夏天，朱圣杰给自己放了个长假，开始漫无目的地环游世界，在不同纬度的天空和深海跳伞潜水。 毫无意外地，沉浸了大半年后，朱圣杰感到了一种空虚感。他必须思考一个问题：什么才是自己足以投入一生的事？ 过去20多年，朱圣杰</p>
+                <div class="news-meta">
+                    <span>📅 2026-04-07 01:30</span>
+                    <a href="https://36kr.com/p/3754821568578050?f=rss" target="_blank">来源: 36氪</a>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+
+            <!-- YouTube AI Content -->
+            <div class="section youtube">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <div class="section-icon">📺</div>
+                        <div>
+                            <h2>AI YouTuber精华<span class="count">15</span></h2>
+                        </div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=ZpUKNYcgM-E" target="_blank">Sam Altman on Building the Future of AI</a></h3>
+                <div class="youtube-channel">📺 OpenAI</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=INGOC6-LLv0" target="_blank">An initiative to secure the world's software | Project Glasswing</a></h3>
+                <div class="youtube-channel">📺 Anthropic</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=hv8ZI7foGZk" target="_blank">Introducing Lyria 3 Pro</a></h3>
+                <div class="youtube-channel">📺 Google DeepMind</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=xr0dtsaqxik" target="_blank">Screen Sharing and Camera Feed with Runway Characters | Runway</a></h3>
+                <div class="youtube-channel">📺 Runway</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=gPj_cQL_wvg" target="_blank">Introducing SAM Audio: The First Unified Multimodal Model for Audio Separation | AI at Meta</a></h3>
+                <div class="youtube-channel">📺 Meta AI</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=vif8NQcjVf0" target="_blank">Jensen Huang: NVIDIA - The $4 Trillion Company \u0026 the AI Revolution | Lex Fridman Podcast #494</a></h3>
+                <div class="youtube-channel">📺 Lex Fridman</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=k-H4nsOTuxU" target="_blank">How Anthropic added $11B in ARR in one month | Amol Avasare (Head of Growth, Anthropic)</a></h3>
+                <div class="youtube-channel">📺 Lenny's Podcast</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=9qXc-THAvc0" target="_blank">How OpenAI's Codex Team Builds with Codex (43 Min) | Alex \u0026 Romain</a></h3>
+                <div class="youtube-channel">📺 Peter Yang</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=myP8UjAM1pk" target="_blank">Michael Nielsen – Why aliens will have a different tech stack than us</a></h3>
+                <div class="youtube-channel">📺 Dwarkesh Podcast</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=Q0bxRANHjFY" target="_blank">Owning the System of Record, Building as Models Improve, \u0026 Why ITSM is Vulnerable</a></h3>
+                <div class="youtube-channel">📺 Unsupervised Learning</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=g45Alfg7diw" target="_blank">How Autonomous Labs Will Transform Scientific Research: Ginkgo Bioworks’ Jason Kelly</a></h3>
+                <div class="youtube-channel">📺 Training Data</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=CeOXx-XTYek" target="_blank">OpenAI Frontier, Symphony, and Harness Engineering — Ryan Lopopolo, OpenAI</a></h3>
+                <div class="youtube-channel">📺 Latent Space</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=Oru2Jxr1xHU" target="_blank">AI for Atoms: How Periodic Labs is Revolutionizing Materials Engineering with Co-Founder Liam Fedus</a></h3>
+                <div class="youtube-channel">📺 No Priors</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=EWvNQjAaOHw" target="_blank">How I use LLMs</a></h3>
+                <div class="youtube-channel">📺 Andrej Karpathy</div>
+            </div>
+            
+            <div class="youtube-video">
+                <h3><a href="https://www.youtube.com/watch?v=z9rdrNrkvDY" target="_blank">Want to join this channel?</a></h3>
+                <div class="youtube-channel">📺 Jeff Su</div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🤖 Powered by AI News Aggregator Skill</p>
+            <p>数据来源：RSS订阅 · GitHub API · YouTube</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+
+        function toggleHistory() {
+            const items = document.querySelector('.history-items');
+            const icon = document.querySelector('.history-toggle-icon');
+            items.classList.toggle('expanded');
+            icon.textContent = items.classList.contains('expanded') ? '▼' : '▶';
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            document.querySelector('.theme-toggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>
